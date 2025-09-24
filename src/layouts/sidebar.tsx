@@ -1,70 +1,44 @@
 import { useState } from "react";
 import { Outlet } from "react-router";
+import { Menu } from "lucide-react";
 
 const SideBar = () => {
-    const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [sidebarOpen, setSidebarOpen] = useState(true);
 
     return (
-        <div className="flex min-h-screen bg-gray-100">
-            <aside
-                className={`bg-white shadow-lg w-64 p-6 fixed top-0 left-0 h-full transform transition-transform duration-200 z-30
-        ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0`}
-            >
-                <div className="flex items-center justify-between mb-8">
-                    <h2 className="text-xl font-bold">ERP System</h2>
+        <div className="h-screen flex flex-col">
+            <header className="flex items-center justify-between bg-white shadow px-4 py-2 sticky top-0 z-20">
+                <div className="flex items-center gap-2">
                     <button
-                        onClick={() => setSidebarOpen(false)}
-                        className="md:hidden text-gray-600 focus:outline-none"
-                    >
-                        ✕
-                    </button>
-                </div>
-                <nav className="space-y-4">
-                    <a href="#" className="block text-gray-700 hover:text-indigo-600 font-medium">Dashboard</a>
-                    <a href="#" className="block text-gray-700 hover:text-indigo-600 font-medium">Employees</a>
-                    <a href="#" className="block text-gray-700 hover:text-indigo-600 font-medium">Finance</a>
-                    <a href="#" className="block text-gray-700 hover:text-indigo-600 font-medium">Sales</a>
-                    <a href="#" className="block text-gray-700 hover:text-indigo-600 font-medium">Inventory</a>
-                </nav>
-            </aside>
-
-            {/* Overlay for mobile */}
-            {sidebarOpen && (
-                <div
-                    onClick={() => setSidebarOpen(false)}
-                    className="fixed inset-0 bg-black bg-opacity-30 z-20 md:hidden"
-                />
-            )}
-
-            <div className="flex-1 md:ml-64">
-                {/* Topbar */}
-                <header className="flex items-center justify-between bg-white px-6 py-4 shadow">
-                    <button
+                        className="p-2 rounded hover:bg-gray-100"
                         onClick={() => setSidebarOpen(!sidebarOpen)}
-                        className="md:hidden text-gray-600 focus:outline-none"
                     >
-                        ☰
+                        <Menu className="w-6 h-6" />
                     </button>
-                    <div className="flex items-center gap-4 w-full justify-end">
-                        <input
-                            type="text"
-                            placeholder="Search..."
-                            className="px-4 py-2 border rounded-lg text-sm focus:outline-none focus:ring focus:ring-indigo-300"
-                        />
-                        <button className="relative">
-                            <span className="material-icons text-gray-600">notifications</span>
-                            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full px-1">3</span>
-                        </button>
-                        <div className="flex items-center gap-2 cursor-pointer">
-                            <img
-                                src="https://i.pravatar.cc/40"
-                                alt="User"
-                                className="w-10 h-10 rounded-full"
-                            />
-                            <span className="font-medium text-gray-700">John Doe</span>
-                        </div>
-                    </div>
-                </header>
+                    <span className="font-bold text-xl">ERP</span>
+                </div>
+                <div className="flex items-center gap-4">
+                    <input
+                        type="text"
+                        placeholder="Search"
+                        className="border rounded-full px-4 py-1 w-64 focus:outline-none focus:ring"
+                    />
+                    <div className="w-8 h-8 rounded-full bg-gray-300"></div>
+                </div>
+            </header>
+
+            <div className="flex flex-1 overflow-hidden">
+                <aside
+                    className={`bg-white shadow-md transition-all duration-300 ease-in-out 
+          ${sidebarOpen ? "w-60" : "w-0"} overflow-hidden`}
+                >
+                    <nav className="flex flex-col p-4 gap-2">
+                        <a href="#" className="p-2 hover:bg-gray-100 rounded">Home</a>
+                        <a href="#" className="p-2 hover:bg-gray-100 rounded">Trending</a>
+                        <a href="#" className="p-2 hover:bg-gray-100 rounded">Subscriptions</a>
+                        <a href="#" className="p-2 hover:bg-gray-100 rounded">Library</a>
+                    </nav>
+                </aside>
 
                 <Outlet />
             </div>
