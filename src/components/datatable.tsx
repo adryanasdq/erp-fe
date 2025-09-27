@@ -1,24 +1,20 @@
-interface Column {
-  header: string;
-}
-
 interface DataTableProps<T extends { id: string }> {
-  columns: Column[];
+  headers: string[];
   data: T[];
 }
 
 const DataTable = <T extends { id: string }>({
-  columns,
+  headers,
   data,
 }: DataTableProps<T>) => {
   return (
-    <div className="overflow-x-auto flex flex-col items-center">
+    <div className="overflow-x-auto flex flex-col items-center bg-white p-4 rounded-lg shadow-md">
       <table className="table mx-auto">
         <thead>
           <tr>
-            {columns.map((col, index) => (
-              <th key={index}>{col.header}</th>
-            ))}
+          {headers.map((header, index) => (
+            <th key={index}>{header}</th>
+          ))}
           </tr>
         </thead>
         <tbody>
@@ -35,7 +31,7 @@ const DataTable = <T extends { id: string }>({
             ))
           ) : (
             <tr>
-              <td colSpan={columns.length} className="text-center py-4">
+              <td colSpan={headers.length} className="text-center py-4">
                 No data available
               </td>
             </tr>
@@ -44,10 +40,13 @@ const DataTable = <T extends { id: string }>({
       </table>
 
       <div className="join gap-2 mt-4 flex justify-center">
+        <button className="join-item btn btn-xs">«</button>
         <button className="join-item btn btn-xs">1</button>
         <button className="join-item btn btn-xs btn-active">2</button>
         <button className="join-item btn btn-xs">3</button>
-        <button className="join-item btn btn-xs">4</button>
+        <button className="join-item btn btn-xs">...</button>
+        <button className="join-item btn btn-xs">10</button>
+        <button className="join-item btn btn-xs">»</button>
       </div>
     </div>
   );

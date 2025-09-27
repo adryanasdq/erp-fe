@@ -1,9 +1,33 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Outlet } from "react-router";
 import { Menu } from "lucide-react";
 
+import { menuItems } from "../api/mock/_menu";
+import type { MenuItem } from "../models/types/menu";
+
 const SideBar = () => {
     const [sidebarOpen, setSidebarOpen] = useState(true);
+
+    const groupedMenuItems = useMemo(() => {
+        const map = new Map<number, MenuItem>();
+
+        menuItems.forEach(item => {
+            map.set(item.id, { ...item, children: [] });
+        });
+
+        return menuItems.reduce<MenuItem[]>((roots, item) => {
+            const current = map.get(item.id)!;
+            if (item.parentId == null) {
+                roots.push(current);
+            } else {
+                const parent = map.get(item.parentId);
+                if (parent) {
+                    parent.children?.push(current);
+                }
+            }
+            return roots;
+        }, []);
+    }, []);
 
     return (
         <div className="h-screen flex flex-col">
@@ -29,18 +53,34 @@ const SideBar = () => {
 
             <div className="flex flex-1 overflow-hidden">
                 <aside
-                    className={`bg-white shadow-md transition-all duration-300 ease-in-out 
-          ${sidebarOpen ? "w-60" : "w-0"} overflow-hidden`}
+                    className={`bg-white shadow-lg transition-all duration-300 ease-in-out 
+          ${sidebarOpen ? "w-60" : "w-0"} overflow-y-auto`}
                 >
-                    <nav className="flex flex-col p-4 gap-2">
-                        <a href="#" className="p-2 hover:bg-gray-100 rounded">Home</a>
-                        <a href="#" className="p-2 hover:bg-gray-100 rounded">Trending</a>
-                        <a href="#" className="p-2 hover:bg-gray-100 rounded">Subscriptions</a>
-                        <a href="#" className="p-2 hover:bg-gray-100 rounded">Library</a>
-                    </nav>
+                    <ul className="menu rounded-box w-full p-4">
+                        {groupedMenuItems.map((item) => (
+                            <li key={item.id}>
+                                {item.children && item.children.length > 0 ? (
+                                    <details open={item.open}>
+                                        <summary>{item.title}</summary>
+                                        <ul>
+                                            {item.children.map((child) => (
+                                                <li key={child.id}>
+                                                    <a href={child.url || "#"}>{child.title}</a>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </details>
+                                ) : (
+                                    <a href={item.url || "#"}>{item.title}</a>
+                                )}
+                            </li>
+                        ))}
+                    </ul>
                 </aside>
 
-                <Outlet />
+                <div className="flex-1 p-4 overflow-auto">
+                    <Outlet />
+                </div>
             </div>
         </div >
     )

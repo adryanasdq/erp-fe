@@ -4,16 +4,12 @@ import { Employee } from "../../api/mock/_employee";
 const HRPage = () => {
 
     return (
-        <DataTable
-            columns={[
-                { header: "ID" },
-                { header: "Name" },
-                { header: "Age" },
-            ]}
-            data={Employee}
-        />
-
-
+        <>
+            <DataTable
+                headers={["ID", "Name", "Position"]}
+                data={Employee}
+            />
+        </>
     );
 }
 
