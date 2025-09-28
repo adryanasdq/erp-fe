@@ -3,20 +3,21 @@ import { useMemo, useState } from "react";
 interface DataTableProps<T extends { id: string }> {
   headers: string[];
   data: T[];
+  pageSize: number;
 }
 
 const DataTable = <T extends { id: string }>({
   headers,
   data,
+  pageSize
 }: DataTableProps<T>) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 5;
   const maxButtons = 4;
 
   const paginatedData = useMemo(() => {
     const startIndex = (currentPage - 1) * pageSize;
     return data.slice(startIndex, startIndex + pageSize);
-  }, [currentPage, data]);
+  }, [currentPage, pageSize, data]);
 
   const totalPages = Math.ceil(data.length / pageSize);
 
@@ -29,7 +30,7 @@ const DataTable = <T extends { id: string }>({
   }
 
   return (
-    <div className="overflow-x-auto flex flex-col items-center bg-white p-4 rounded-lg shadow-md">
+    <div className="overflow-x-auto flex flex-col items-center bg-white p-4 rounded-lg shadow-lg">
       <table className="table mx-auto">
         <thead>
           <tr>
