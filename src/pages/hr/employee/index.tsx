@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Plus } from "lucide-react";
 
 import EmployeeSummary from "./components/employee-summary";
-import DataTable from "../../../components/datatable";
+import EmployeeTable from "./components/employee-table";
 import useStore from "../../../models/stores";
 
 const HRPage = () => {
@@ -11,7 +11,7 @@ const HRPage = () => {
 
     const [searchText, setSearchText] = useState("");
     const [pageSize, setPageSize] = useState(10);
-    
+
     const filteredEmployee = useMemo(() => {
         return data.filter((emp) => {
             return emp.name.toLowerCase().includes(searchText.toLowerCase())
@@ -72,8 +72,7 @@ const HRPage = () => {
                 </div>
             </div>
 
-            <DataTable
-                headers={["ID", "Status", "Join Date", "Manager ID", "Position ID", "Name", "Modified Date"]}
+            <EmployeeTable
                 data={filteredEmployee}
                 pageSize={pageSize}
             />

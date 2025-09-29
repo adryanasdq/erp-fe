@@ -1,7 +1,15 @@
 import { useMemo, useState } from "react";
 
+type TextAlign = "left" | "right" | "center" | "justify" | "start" | "end";
+
+interface TableHeaders {
+  align: TextAlign;
+  minWidth: number;
+  title: string;
+}
+
 interface DataTableProps<T extends { id: string }> {
-  headers: string[];
+  headers: TableHeaders[];
   data: T[];
   pageSize: number;
 }
@@ -35,7 +43,12 @@ const DataTable = <T extends { id: string }>({
         <thead>
           <tr>
             {headers.map((header, index) => (
-              <th key={index}>{header}</th>
+              <th
+                key={index}
+                style={{ minWidth: `${header.minWidth}px`, textAlign: header.align }}
+              >
+                {header.title}
+              </th>
             ))}
           </tr>
         </thead>
@@ -98,3 +111,4 @@ const DataTable = <T extends { id: string }>({
 };
 
 export default DataTable;
+export type { TableHeaders };
