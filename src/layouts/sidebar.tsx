@@ -3,7 +3,7 @@ import { Outlet } from "react-router";
 import { Menu } from "lucide-react";
 
 import { menuItems } from "../api/mock/_menu";
-import type { MenuItem } from "../models/types/menu";
+import type { MenuItem } from "../models/types/admin/tools/menu";
 
 const SideBar = () => {
     const [sidebarOpen, setSidebarOpen] = useState(true);

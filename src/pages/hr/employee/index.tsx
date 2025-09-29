@@ -1,18 +1,26 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Plus } from "lucide-react";
 
 import EmployeeSummary from "./components/employee-summary";
 import DataTable from "../../../components/datatable";
-import { Employee } from "../../../api/mock/_employee";
+import useStore from "../../../models/stores";
 
 const HRPage = () => {
+    const data = useStore((state) => state.employees);
+    const fetchData = useStore((state) => state.fetchEmployees);
+
     const [searchText, setSearchText] = useState("");
     const [pageSize, setPageSize] = useState(10);
+    
     const filteredEmployee = useMemo(() => {
-        return Employee.filter((emp) => {
+        return data.filter((emp) => {
             return emp.name.toLowerCase().includes(searchText.toLowerCase())
         });
-    }, [searchText])
+    }, [data, searchText])
+
+    useEffect(() => {
+        fetchData();
+    }, [fetchData])
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchText(e.target.value);
@@ -65,7 +73,7 @@ const HRPage = () => {
             </div>
 
             <DataTable
-                headers={["ID", "Name", "Position"]}
+                headers={["ID", "Status", "Join Date", "Manager ID", "Position ID", "Name", "Modified Date"]}
                 data={filteredEmployee}
                 pageSize={pageSize}
             />

@@ -1,4 +1,4 @@
-import type { MenuItem } from "../../models/types/menu";
+import type { MenuItem } from "../../models/types/admin/tools/menu";
 
 export const menuItems: MenuItem[] = [
     // Human Resource Section
