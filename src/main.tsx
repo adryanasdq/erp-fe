@@ -3,10 +3,10 @@ import { BrowserRouter, Routes, Route } from 'react-router'
 import { createRoot } from 'react-dom/client'
 
 import './index.css'
-import App from './App.tsx'
-import Navbar from './layouts/navbar.tsx'
-import HRPage from './pages/hr/employee/index.tsx'
-import Sidebar from './layouts/sidebar.tsx'
+import App from './App'
+import Navbar from './layouts/navbar'
+import HRPage from './pages/hr/employee/index'
+import Sidebar from './layouts/sidebar'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

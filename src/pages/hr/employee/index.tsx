@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { Plus } from "lucide-react";
 
+import useStore from "@/models/stores/index";
+
 import EmployeeSummary from "./components/employee-summary";
 import EmployeeTable from "./components/employee-table";
-import useStore from "../../../models/stores";
 
 const HRPage = () => {
     const data = useStore((state) => state.employees);

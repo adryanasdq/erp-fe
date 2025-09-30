@@ -1,5 +1,5 @@
-import type { IEmployee } from "../../models/types/hr/employee";
-import { hrApiFetch } from "../base";
+import type { IEmployee } from "@/models/types/hr/employee";
+import { hrApiFetch } from "@/api/base";
 
 
 interface EmployeeAPI {

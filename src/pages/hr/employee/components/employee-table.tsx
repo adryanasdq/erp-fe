@@ -1,5 +1,5 @@
-import DataTable, { type TableHeaders } from "../../../../components/datatable";
-import type { IEmployee } from "../../../../models/types/hr/employee";
+import DataTable, { type TableHeaders } from "@/components/datatable";
+import type { IEmployee } from "@/models/types/hr/employee"
 
 interface EmployeeTableProps {
     data: IEmployee[];
