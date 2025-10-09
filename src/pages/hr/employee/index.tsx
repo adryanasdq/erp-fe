@@ -5,6 +5,8 @@ import useStore from "@/models/stores/index";
 
 import EmployeeSummary from "./components/employee-summary";
 import EmployeeTable from "./components/employee-table";
+import EmployeeFormModal from "./components/employee-form-modal";
+
 
 const HRPage = () => {
     const data = useStore((state) => state.employees);
@@ -31,12 +33,18 @@ const HRPage = () => {
         setPageSize(Number(e.target.value));
     }
 
+    const openModal = () => {
+        (document.getElementById("emp-form") as HTMLDialogElement).showModal();
+    }
+
     return (
         <>
+            <EmployeeFormModal />
+
             <div className="text-4xl mb-4">Employee</div>
             <EmployeeSummary />
             <div className="flex justify-between mb-4">
-                <button className="btn mr-2">
+                <button className="btn mr-2" onClick={openModal}>
                     <Plus /> New
                 </button>
                 <label className="input mb-2">
