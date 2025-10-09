@@ -12,6 +12,7 @@ const HRPage = () => {
     const data = useStore((state) => state.employees);
     const fetchData = useStore((state) => state.fetchEmployees);
 
+    const [formDialogMode, setFormDialogMode] = useState<"new" | "edit" | "view">("new");
     const [searchText, setSearchText] = useState("");
     const [pageSize, setPageSize] = useState(10);
 
@@ -34,12 +35,13 @@ const HRPage = () => {
     }
 
     const openModal = () => {
+        setFormDialogMode("new");
         (document.getElementById("emp-form") as HTMLDialogElement).showModal();
     }
 
     return (
         <>
-            <EmployeeFormModal />
+            <EmployeeFormModal mode={formDialogMode} />
 
             <div className="text-4xl mb-4">Employee</div>
             <EmployeeSummary />

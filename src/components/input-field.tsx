@@ -13,7 +13,7 @@ const InputField: React.FC<InputProps> = ({
     <fieldset className="fieldset w-full">
       <legend className="fieldset-legend">
         {legend}
-        {required && <span className="-ml-1 text-red-500">*</span>}
+        {required && <span className="-ml-2 text-red-500">*</span>}
       </legend>
       <input
         {...props}

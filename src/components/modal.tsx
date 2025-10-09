@@ -9,6 +9,7 @@ const Modal: React.FC<ModalProps> = ({ id, title, children }) => {
         <dialog id={id} className="modal">
             <div className="modal-box">
                 <h3 className="font-bold text-lg text-center">{title}</h3>
+                <div className="divider" />
                 {children}
             </div>
         </dialog>

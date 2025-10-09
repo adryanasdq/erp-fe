@@ -1,12 +1,12 @@
 import type { IDepartment } from "./department";
 
 interface IPosition {
-    id: string;
+    id?: string;
     title: string;
     description: string;
     department_id: string;
     modified_date: Date;
-    department: IDepartment;
+    department?: IDepartment;
 }
 
 export type { IPosition }

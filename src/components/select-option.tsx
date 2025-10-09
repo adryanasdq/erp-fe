@@ -17,7 +17,7 @@ const SelectOption: React.FC<SelectOptionProps> = ({
         <fieldset className="fieldset w-full">
             <legend className="fieldset-legend">
                 {legend}
-                {required && <span className="-ml-1 text-red-500">*</span>}
+                {required && <span className="-ml-2 text-red-500">*</span>}
             </legend>
             <select defaultValue={`Pick a ${legend}`} className="select w-full" {...props}>
                 <option disabled={true}>Pick a {legend}</option>

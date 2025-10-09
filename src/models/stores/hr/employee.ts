@@ -1,7 +1,7 @@
 import type { StateCreator } from "zustand";
 
 import type { IEmployee } from "@/models/types/hr/employee";
-import { employeeAPI } from "@/api/clients/employee";
+import { employeeAPI } from "@/api/clients/hr/employee";
 
 
 interface IEmployeeSlice {
@@ -9,6 +9,7 @@ interface IEmployeeSlice {
     setEmployees: (employee: IEmployee[]) => void;
     isLoading: boolean;
     fetchEmployees: () => Promise<void>;
+    createEmployee: (data: IEmployee, token?: string) => Promise<string>;
 }
 
 const createEmployeeSlice: StateCreator<IEmployeeSlice> = (set) => ({
@@ -25,6 +26,18 @@ const createEmployeeSlice: StateCreator<IEmployeeSlice> = (set) => ({
         } finally {
             set({ isLoading: false });
         }
+    },
+    createEmployee: async (data, token) => {
+        try {
+            set({ isLoading: true });
+            await employeeAPI.postEmployee(data, token);
+        } catch {
+            // do something
+        } finally {
+            set({ isLoading: false });
+        }
+        
+        return "Employee created successfully";
     }
 });
 

@@ -5,7 +5,7 @@ const DefaultEmployee: IEmployee = {
     position_id: '',
     manager_id: '',
     hire_date: new Date(),
-    status: 'active',
+    status: 'Active',
     modified_date: new Date(),
 };
 
