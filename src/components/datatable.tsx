@@ -8,13 +8,13 @@ interface TableHeaders {
   title: string;
 }
 
-interface DataTableProps<T extends { id: string }> {
+interface DataTableProps<T extends { id?: string }> {
   headers: TableHeaders[];
   data: T[];
   pageSize: number;
 }
 
-const DataTable = <T extends { id: string }>({
+const DataTable = <T extends { id?: string }>({
   headers,
   data,
   pageSize
