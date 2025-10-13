@@ -10,6 +10,8 @@ interface IEmployeeSlice {
     isLoading: boolean;
     fetchEmployees: () => Promise<void>;
     createEmployee: (data: IEmployee, token?: string) => Promise<string>;
+    updateEmployee: (data: IEmployee, token?: string) => Promise<string>;
+    deleteEmployee: (empId: string, token?: string) => Promise<string>;
 }
 
 const createEmployeeSlice: StateCreator<IEmployeeSlice> = (set) => ({
@@ -38,6 +40,30 @@ const createEmployeeSlice: StateCreator<IEmployeeSlice> = (set) => ({
         }
         
         return "Employee created successfully";
+    },
+    updateEmployee: async (data, token) => {
+        try {
+            set({ isLoading: true });
+            await employeeAPI.updateEmployee(data, token);
+        } catch {
+            // do something
+        } finally {
+            set({ isLoading: false });
+        }
+
+        return "Employee updated successfully";
+    },
+    deleteEmployee: async (empId, token) => {
+        try {
+            set({ isLoading: true });
+            await employeeAPI.deleteEmployee(empId, token);
+        } catch {
+            // do something
+        } finally {
+            set({ isLoading: false });
+        }
+        
+        return "Employee deleted successfully";
     }
 });
 

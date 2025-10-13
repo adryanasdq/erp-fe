@@ -4,9 +4,16 @@ import type { IEmployee } from "@/models/types/hr/employee"
 interface EmployeeTableProps {
     data: IEmployee[];
     pageSize: number;
+    onEdit?: (empId: string) => void;
+    onDelete?: (empId: string) => void;
 }
 
-const EmployeeTable: React.FC<EmployeeTableProps> = ({ data, pageSize }) => {
+const EmployeeTable: React.FC<EmployeeTableProps> = ({
+    data,
+    pageSize,
+    onEdit,
+    onDelete
+}) => {
     const headers: TableHeaders[] = [
         {
             title: "ID",
@@ -50,6 +57,10 @@ const EmployeeTable: React.FC<EmployeeTableProps> = ({ data, pageSize }) => {
             headers={headers}
             data={data}
             pageSize={pageSize}
+            isEditable={true}
+            isDeletable={true}
+            onEdit={onEdit}
+            onDelete={onDelete}
         />
     )
 }

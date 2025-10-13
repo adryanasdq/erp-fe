@@ -6,22 +6,35 @@ import SelectOption from "@/components/select-option";
 
 import useStore from "@/models/stores";
 import { DefaultEmployee } from "@/models/schema/hr/employee";
+import { IEmployee } from "@/models/types/hr/employee";
 
 interface IEmployeeFormModalProps {
     mode: string;
+    selectedEmployee?: IEmployee;
 }
 
 
 const EmployeeFormModal: React.FC<IEmployeeFormModalProps> = ({
-    mode
+    mode,
+    selectedEmployee
 }) => {
     const employees = useStore((state) => state.employees);
     const positions = useStore((state) => state.positions);
     const isSubmitting = useStore((state) => state.isLoading);
     const createEmployee = useStore((state) => state.createEmployee);
+    const updateEmployee = useStore((state) => state.updateEmployee);
     const fetchEmployees = useStore((state) => state.fetchEmployees);
     const fetchPositions = useStore((state) => state.fetchPositions);
     const [formData, setFormData] = useState(DefaultEmployee);
+
+    useEffect(() => {
+        if (mode === "edit" && selectedEmployee) {
+            console.log("selectedEmployee", selectedEmployee);
+            setFormData(selectedEmployee);
+        } else {
+            setFormData(DefaultEmployee);
+        }
+    }, [mode, selectedEmployee]);
 
     const positionOptions = positions.map((pos) => ({
         value: pos.id,
@@ -52,6 +65,10 @@ const EmployeeFormModal: React.FC<IEmployeeFormModalProps> = ({
         }))
     }
 
+    useEffect(() => {
+        console.log("formData", formData);
+    }, [formData])
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -60,7 +77,10 @@ const EmployeeFormModal: React.FC<IEmployeeFormModalProps> = ({
                 const response = await createEmployee(formData);
                 console.log(response);
             } else {
-                
+                if (formData.id) {
+                    const response = await updateEmployee(formData);
+                    console.log(response);
+                }
             }
         } catch (error) {
             console.error("Error submitting form:", error);
@@ -106,6 +126,7 @@ const EmployeeFormModal: React.FC<IEmployeeFormModalProps> = ({
                     <SelectOption
                         legend="Position"
                         name="position_id"
+                        value={formData.position_id}
                         required={true}
                         options={positionOptions}
                         onChange={handleChange}
@@ -114,6 +135,7 @@ const EmployeeFormModal: React.FC<IEmployeeFormModalProps> = ({
                     <SelectOption
                         legend="Manager"
                         name="manager_id"
+                        value={formData.manager_id}
                         options={managerOptions}
                         onChange={handleChange}
                     />
@@ -123,12 +145,15 @@ const EmployeeFormModal: React.FC<IEmployeeFormModalProps> = ({
                     <InputField
                         legend="Join Date"
                         type="date"
-                        onChange={handleDateChange}
+                        name="hire_date"
+                        value={formData.hire_date.toString()}
+                        onChange={handleChange}
                     />
 
                     <SelectOption
                         legend="Status"
                         name="status"
+                        value={formData.status}
                         options={[
                             { value: 'active', label: 'Active' },
                             { value: 'inactive', label: 'Inactive' },
