@@ -8,7 +8,7 @@ import EmployeeTable from "./components/employee-table";
 import EmployeeFormModal from "./components/employee-form-modal";
 
 
-const HRPage = () => {
+const EmployeePage = () => {
     const data = useStore((state) => state.employees);
     const fetchData = useStore((state) => state.fetchEmployees);
     const deleteEmployee = useStore((state) => state.deleteEmployee);
@@ -77,4 +77,4 @@ const HRPage = () => {
     );
 }
 
-export default HRPage;
+export default EmployeePage;
