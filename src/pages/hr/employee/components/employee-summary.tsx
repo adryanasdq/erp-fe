@@ -1,13 +1,26 @@
 import { Users, UserCheck, Palmtree, RockingChair } from "lucide-react"
 
-const EmployeeSummary = () => {
+interface EmployeeSummaryProps {
+    totalEmployees?: number;
+    activeEmployees?: number;
+    onLeaveEmployees?: number;
+    retiredEmployees?: number;
+}
+
+
+const EmployeeSummary: React.FC<EmployeeSummaryProps> = ({
+    totalEmployees,
+    activeEmployees,
+    onLeaveEmployees,
+    retiredEmployees
+}) => {
     return (
         <div className="flex justify-between mb-12">
             <div className="card w-60 bg-base-100 card-md shadow-sm">
                 <div className="card-body">
                     <div className="flex justify-between">
                         <div>
-                            <h2 className="card-title text-2xl">1000</h2>
+                            <h2 className="card-title text-2xl">{totalEmployees}</h2>
                             <p># Employee(s)</p>
                         </div>
                         <Users size={48} />
@@ -18,7 +31,7 @@ const EmployeeSummary = () => {
                 <div className="card-body">
                     <div className="flex justify-between">
                         <div>
-                            <h2 className="card-title text-2xl">821</h2>
+                            <h2 className="card-title text-2xl">{activeEmployees}</h2>
                             <p>Active</p>
                         </div>
                         <UserCheck size={48} />

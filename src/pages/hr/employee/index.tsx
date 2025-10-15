@@ -60,7 +60,10 @@ const HRPage = () => {
             />
 
             <div className="text-4xl mb-4">Employee</div>
-            <EmployeeSummary />
+            <EmployeeSummary
+                totalEmployees={data.length}
+                activeEmployees={data.filter((emp) => emp.status.toLowerCase() === "active").length}
+            />
 
             <EmployeeTable
                 data={filteredEmployee}
