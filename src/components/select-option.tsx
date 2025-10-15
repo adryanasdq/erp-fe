@@ -19,8 +19,8 @@ const SelectOption: React.FC<SelectOptionProps> = ({
                 {legend}
                 {required && <span className="-ml-2 text-red-500">*</span>}
             </legend>
-            <select defaultValue={`Pick a ${legend}`} className="select w-full" {...props}>
-                <option disabled={true}>Pick a {legend}</option>
+            <select className="select w-full" {...props}>
+                <option disabled={true} value=''>Pick a {legend}</option>
                 {options?.map((opt) => (
                     <option key={opt.value} value={opt.value}>{opt.label}</option>
                 ))}

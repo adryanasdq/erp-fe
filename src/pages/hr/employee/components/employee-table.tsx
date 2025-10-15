@@ -22,20 +22,8 @@ const EmployeeTable: React.FC<EmployeeTableProps> = ({
             minWidth: 20
         },
         {
-            key: "status",
-            title: "Status",
-            align: "left",
-            minWidth: 20
-        },
-        {
-            key: "hire_date",
-            title: "Hire Date",
-            align: "left",
-            minWidth: 20
-        },
-        {
-            key: "manager_id",
-            title: "Manager ID",
+            key: "name",
+            title: "Name",
             align: "left",
             minWidth: 20
         },
@@ -46,8 +34,20 @@ const EmployeeTable: React.FC<EmployeeTableProps> = ({
             minWidth: 20
         },
         {
-            key: "name",
-            title: "Name",
+            key: "manager_id",
+            title: "Manager ID",
+            align: "left",
+            minWidth: 20
+        },
+        {
+            key: "hire_date",
+            title: "Hire Date",
+            align: "left",
+            minWidth: 20
+        },
+        {
+            key: "status",
+            title: "Status",
             align: "left",
             minWidth: 20
         },
