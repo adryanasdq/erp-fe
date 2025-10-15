@@ -4,14 +4,16 @@ import { Trash2 } from "lucide-react";
 
 type TextAlign = "left" | "right" | "center" | "justify" | "start" | "end";
 
-interface TableHeaders {
+interface TableHeaders<T> {
+  key: keyof T;
   align: TextAlign;
   minWidth: number;
   title: string;
+  render?: (row: T) => React.ReactNode;
 }
 
 interface DataTableProps<T extends { id?: string }> {
-  headers: TableHeaders[];
+  headers: TableHeaders<T>[];
   data: T[];
   pageSize: number;
   isEditable?: boolean;
@@ -71,8 +73,10 @@ const DataTable = <T extends { id?: string }>({
                   key={row.id}
                   className="hover:bg-base-300"
                 >
-                  {Object.values(row).map((value, index) => (
-                    <td key={index}>{String(value)}</td>
+                  {headers.map((h) => (
+                    <td key={String(h.key)} style={{ textAlign: h.align }}>
+                      {h.render ? h.render(row) : String(row[h.key])}
+                    </td>
                   ))}
                   {(isEditable || isDeletable) && (
                     <td>

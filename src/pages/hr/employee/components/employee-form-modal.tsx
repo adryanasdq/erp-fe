@@ -58,17 +58,6 @@ const EmployeeFormModal: React.FC<IEmployeeFormModalProps> = ({
         }))
     }
 
-    const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData((prev) => ({
-            ...prev,
-            hire_date: new Date(e.target.value)
-        }))
-    }
-
-    useEffect(() => {
-        console.log("formData", formData);
-    }, [formData])
-
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -155,20 +144,29 @@ const EmployeeFormModal: React.FC<IEmployeeFormModalProps> = ({
                         name="status"
                         value={formData.status}
                         options={[
-                            { value: 'active', label: 'Active' },
-                            { value: 'inactive', label: 'Inactive' },
+                            { value: 'Active', label: 'Active' },
+                            { value: 'Inactive', label: 'Inactive' },
                         ]}
                         onChange={handleChange}
                     />
                 </div>
 
-                <button
-                    disabled={isSubmitting}
-                    type="submit"
-                    className="btn mt-2"
-                >
-                    {getButtonLabel()}
-                </button>
+                <div className="modal-action">
+                    <button
+                        type="button"
+                        className="btn btn-ghost mt-2 mr-2"
+                        onClick={closeModal}
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        disabled={isSubmitting}
+                        type="submit"
+                        className="btn mt-2"
+                    >
+                        {getButtonLabel()}
+                    </button>
+                </div>
             </form>
         </Modal>
     )
