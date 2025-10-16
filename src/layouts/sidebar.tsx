@@ -1,33 +1,63 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Outlet } from "react-router";
 import { Menu } from "lucide-react";
 
-import { menuItems } from "../api/mock/_menu";
-import type { MenuItem } from "../models/types/admin/tools/menu";
+import useStore from "@/models/stores/index";
+import type { IMenuItem } from "@/models/types/admin/tools/menu";
+
 
 const SideBar = () => {
     const [sidebarOpen, setSidebarOpen] = useState(true);
+    const menus = useStore((state) => state.menus);
+    const fetchMenus = useStore((state) => state.fetchMenus);
 
-    const groupedMenuItems = useMemo(() => {
-        const map = new Map<number, MenuItem>();
+    useEffect(() => {
+        fetchMenus();
+    }, [fetchMenus]);
 
-        menuItems.forEach(item => {
-            map.set(item.id, { ...item, children: [] });
+    const groupedMenuItems = useMemo<IMenuItem[]>(() => {
+        const map: Record<number, IMenuItem> = {};
+        const tree: IMenuItem[] = [];
+
+        menus.forEach((item) => {
+            map[item.id] = { ...item, children: [] };
         });
 
-        return menuItems.reduce<MenuItem[]>((roots, item) => {
-            const current = map.get(item.id)!;
-            if (item.parentId == null) {
-                roots.push(current);
-            } else {
-                const parent = map.get(item.parentId);
-                if (parent) {
-                    parent.children?.push(current);
+        menus.forEach((item) => {
+            const currentItem = map[item.id];
+            if (item.parent_id != null) {
+                const parentItem = map[item.parent_id];
+                if (parentItem) {
+                    parentItem.children!.push(currentItem);
                 }
+            } else {
+                tree.push(currentItem);
             }
-            return roots;
-        }, []);
-    }, []);
+        });
+
+        return tree;
+    }, [menus]);
+
+    const renderMenuItems = (items: IMenuItem[]) => {
+        return items.map((item) => {
+            const hasChildren = item.children && item.children.length > 0;
+
+            return (
+                <li key={item.id}>
+                    {hasChildren ? (
+                        <details>
+                            <summary>{item.title}</summary>
+                            <ul>
+                                {renderMenuItems(item.children!)}
+                            </ul>
+                        </details>
+                    ) : (
+                        <a href={item.url || "#"}>{item.title}</a>
+                    )}
+                </li>
+            );
+        });
+    };
 
     return (
         <div className="h-screen flex flex-col">
@@ -54,27 +84,12 @@ const SideBar = () => {
             <div className="flex flex-1 overflow-hidden">
                 <aside
                     className={`bg-white shadow-lg transition-all duration-300 ease-in-out 
-          ${sidebarOpen ? "w-60" : "w-0"} overflow-y-auto`}
+                        ${sidebarOpen ? "w-60" : "w-0"} overflow-y-auto`}
                 >
-                    <ul className="menu rounded-box w-full p-4">
-                        {groupedMenuItems.map((item) => (
-                            <li key={item.id}>
-                                {item.children && item.children.length > 0 ? (
-                                    <details open={item.open}>
-                                        <summary>{item.title}</summary>
-                                        <ul>
-                                            {item.children.map((child) => (
-                                                <li key={child.id}>
-                                                    <a href={child.url || "#"}>{child.title}</a>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </details>
-                                ) : (
-                                    <a href={item.url || "#"}>{item.title}</a>
-                                )}
-                            </li>
-                        ))}
+                    <ul className="menu bg-base-200 rounded-box w-56">
+                        <ul className="menu bg-base-200 rounded-box w-56">
+                            {renderMenuItems(groupedMenuItems)}
+                        </ul>
                     </ul>
                 </aside>
 

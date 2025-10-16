@@ -1,6 +1,8 @@
 const baseApiURL = import.meta.env.VITE_API_URL || "";
+const baseAdminApiURL = import.meta.env.VITE_ADMIN_URL || "";
 const baseHRApiURL = import.meta.env.VITE_HR_URL || "";
 
+export const AdminApiURL = `${baseApiURL}/${baseAdminApiURL}`
 export const HRApiURL = `${baseApiURL}/${baseHRApiURL}`
 
 export interface Response<T = unknown> {
@@ -79,4 +81,5 @@ const createApiFetch = (baseURL: string, token?: string) => {
     };
 }
 
+export const adminApiFetch = (token?: string) => createApiFetch(AdminApiURL, token);
 export const hrApiFetch = (token?: string) => createApiFetch(HRApiURL, token);
