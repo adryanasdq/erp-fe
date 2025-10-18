@@ -35,6 +35,17 @@ const SideBar = () => {
             }
         });
 
+        tree.forEach((node) => {
+            const sortChildren = (item: IMenuItem) => {
+                if (item.children && item.children.length > 0) {
+                    item.children.sort((a, b) => a.order_index - b.order_index);
+                    item.children.forEach(sortChildren);
+                }
+            };
+
+            sortChildren(node);
+        });
+
         return tree;
     }, [menus]);
 
