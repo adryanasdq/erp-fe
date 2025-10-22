@@ -80,7 +80,7 @@ const DataTable = <T extends { id?: string }>({
                   ))}
                   {(isEditable || isDeletable) && (
                     <td>
-                      <div className="flex gap-2">
+                      <div className="flex gap-2 items-center justify-center">
                         {isEditable && (
                           <button
                             onClick={() => onEdit && onEdit(row.id)}

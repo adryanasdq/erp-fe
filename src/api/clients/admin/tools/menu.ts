@@ -4,10 +4,10 @@ import { adminApiFetch } from "@/api/base";
 
 interface MenuAPI {
     getAll: (token?: string) => Promise<IMenuItem[]>;
-    getByID: (id: number, token?: string) => Promise<IMenuItem>;
+    getByID: (id: string, token?: string) => Promise<IMenuItem>;
     postMenu: (data: IMenuItem, token?: string) => Promise<IMenuItem>;
     updateMenu: (data: IMenuItem, token?: string) => Promise<IMenuItem>;
-    deleteMenu: (menuId: number, token?: string) => Promise<string>;
+    deleteMenu: (menuId: string, token?: string) => Promise<string>;
 }
 
 const menuAPI: MenuAPI = {

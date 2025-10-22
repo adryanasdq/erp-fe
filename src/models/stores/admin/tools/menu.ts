@@ -11,7 +11,7 @@ interface IMenuSlice {
     fetchMenus: () => Promise<void>;
     createMenu: (data: IMenuItem, token?: string) => Promise<string>;
     updateMenu: (data: IMenuItem, token?: string) => Promise<string>;
-    deleteMenu: (menuId: number, token?: string) => Promise<string>;
+    deleteMenu: (menuId: string, token?: string) => Promise<string>;
 }
 
 const createMenuSlice: StateCreator<IMenuSlice> = (set) => ({

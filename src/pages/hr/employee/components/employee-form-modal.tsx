@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
-import InputField from "@/components/input-field";
+import InputField from "@/components/data-input/input-field";
 import Modal from "@/components/modal"
-import SelectOption from "@/components/select-option";
+import SelectOption from "@/components/data-input/select-option";
 
 import useStore from "@/models/stores";
 import { DefaultEmployee } from "@/models/schema/hr/employee";
@@ -29,7 +29,6 @@ const EmployeeFormModal: React.FC<IEmployeeFormModalProps> = ({
 
     useEffect(() => {
         if (mode === "edit" && selectedEmployee) {
-            console.log("selectedEmployee", selectedEmployee);
             setFormData(selectedEmployee);
         } else {
             setFormData(DefaultEmployee);
@@ -64,11 +63,9 @@ const EmployeeFormModal: React.FC<IEmployeeFormModalProps> = ({
         try {
             if (mode === "new") {
                 const response = await createEmployee(formData);
-                console.log(response);
             } else {
                 if (formData.id) {
                     const response = await updateEmployee(formData);
-                    console.log(response);
                 }
             }
         } catch (error) {
