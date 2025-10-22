@@ -59,7 +59,7 @@ const EmployeePage = () => {
                 selectedEmployee={selectedEmployee}
             />
 
-            <div className="text-4xl mb-4">Employee</div>
+            <div className="text-4xl mt-4 mb-8">Employee</div>
             <EmployeeSummary
                 totalEmployees={data.length}
                 activeEmployees={data.filter((emp) => emp.status.toLowerCase() === "active").length}

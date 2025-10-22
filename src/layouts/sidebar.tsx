@@ -24,6 +24,8 @@ const SideBar = () => {
         });
 
         menus.forEach((item) => {
+            if (item.is_hidden) return;
+            
             const currentItem = map[item.id];
             if (item.parent_id != null) {
                 const parentItem = map[item.parent_id];

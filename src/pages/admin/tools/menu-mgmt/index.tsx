@@ -15,7 +15,13 @@ const MenuManagementPage = () => {
     const [searchText, setSearchText] = useState("");
 
     const filteredMenu = useMemo(() => {
-        return data.filter((menu) => {
+        const sorted = data.sort((a, b) => {
+            const aTime = new Date(a?.modified_date ?? 0).getTime();
+            const bTime = new Date(b?.modified_date ?? 0).getTime();
+            return bTime - aTime;
+        });
+
+        return sorted.filter((menu) => {
             return menu.title.toLowerCase().includes(searchText.toLowerCase())
         });
     }, [data, searchText])
@@ -55,6 +61,8 @@ const MenuManagementPage = () => {
                 mode={formDialogMode}
                 selectedMenu={selectedMenu}
             />
+            
+            <div className="text-4xl mt-4 mb-8">Menu Management</div>
 
             <MenuTable
                 data={filteredMenu}
