@@ -18,6 +18,11 @@ export const routes = [
         layout: 'sidebar'
     },
     {
+        path: '/admin/tools/lookup',
+        element: lazy(() => import('@/pages/admin/tools/lookup/index')),
+        layout: 'sidebar'
+    },
+    {
         path: '/hr',
         element: lazy(() => import('@/pages/hr/index')),
         layout: 'sidebar'
