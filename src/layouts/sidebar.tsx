@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { Outlet } from "react-router";
-import { Menu } from "lucide-react";
+import { Outlet, useLocation } from "react-router";
+import { Cog, PanelLeft } from "lucide-react";
 
 import useStore from "@/models/stores/index";
 import type { IMenuItem } from "@/models/types/admin/tools/menu";
@@ -25,7 +25,7 @@ const SideBar = () => {
 
         menus.forEach((item) => {
             if (item.is_hidden) return;
-            
+
             const currentItem = map[item.id];
             if (item.parent_id != null) {
                 const parentItem = map[item.parent_id];
@@ -72,41 +72,71 @@ const SideBar = () => {
         });
     };
 
+    const renderBreadcrumbs = () => {
+        const location = useLocation();
+        const pathnames = location.pathname.split("/").filter((x) => x);
+
+        return (
+            <div className="breadcrumbs text-sm">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    {pathnames.map((value, index) => {
+                        const to = `/${pathnames.slice(0, index + 1).join("/")}`;
+                        const isLast = index === pathnames.length - 1;
+
+                        return isLast ? (
+                            <li key={to}>{value}</li>
+                        ) : (
+                            <li key={to}>
+                                <a href={to}>{value}</a>
+                            </li>
+                        );
+                    })}
+                </ul>
+            </div>
+        );
+    }
+
     return (
         <div className="h-screen flex flex-col">
-            <header className="flex items-center justify-between bg-white shadow px-4 py-2 sticky top-0 z-20">
-                <div className="flex items-center gap-2">
-                    <button
-                        className="p-2 rounded hover:bg-gray-100"
-                        onClick={() => setSidebarOpen(!sidebarOpen)}
-                    >
-                        <Menu className="w-6 h-6" />
-                    </button>
-                    <span className="font-bold text-xl">ERP</span>
-                </div>
-                <div className="flex items-center gap-4">
-                    <input
-                        type="text"
-                        placeholder="Search"
-                        className="border rounded-full px-4 py-1 w-64 focus:outline-none focus:ring"
-                    />
-                    <div className="w-8 h-8 rounded-full bg-gray-300"></div>
-                </div>
-            </header>
-
             <div className="flex flex-1 overflow-hidden">
                 <aside
                     className={`bg-white shadow-lg transition-all duration-300 ease-in-out 
                         ${sidebarOpen ? "w-60" : "w-0"} overflow-y-auto`}
                 >
-                    <ul className="menu bg-base-200 rounded-box w-56">
-                        <ul className="menu bg-base-200 rounded-box w-56">
+                    <div className="flex items-center gap-2 p-4">
+                        <Cog size={48} />
+                        <div>
+                            <h2 className="text-xl font-bold">ERP</h2>
+                            <p className="text-sm">Enterprise</p>
+                        </div>
+                    </div>
+
+                    <ul className="menu rounded-box w-56">
+                        <ul className="menu rounded-box w-56">
                             {renderMenuItems(groupedMenuItems)}
                         </ul>
                     </ul>
+
+                    <div className="absolute bottom-0 w-full p-4 border-t border-base-300">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+                                <span className="text-gray-600 font-semibold">A</span>
+                            </div>
+                            <div>
+                                <p className="font-medium">Adryan Ashidiq</p>
+                                <a href="#" className="text-sm text-blue-600 hover:underline">View Profile</a>
+                            </div>
+                        </div>
+                    </div>
                 </aside>
 
                 <div className="flex-1 p-4 overflow-auto">
+                    <div className="flex items-center gap-4 mb-8">
+                        <PanelLeft className="cursor-pointer" onClick={() => setSidebarOpen(!sidebarOpen)} />
+                        <span>|</span>
+                        {renderBreadcrumbs()}
+                    </div>
                     <Outlet />
                 </div>
             </div>

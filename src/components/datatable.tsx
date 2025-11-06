@@ -50,7 +50,7 @@ const DataTable = <T extends { id?: string }>({
   }
 
   return (
-    <div className="overflow-x-auto flex flex-col items-center bg-white p-4 rounded-lg shadow-lg">
+    <div className="card bg-base-100 shadow-md p-4">
       <table className="table mx-auto">
         <thead>
           <tr>

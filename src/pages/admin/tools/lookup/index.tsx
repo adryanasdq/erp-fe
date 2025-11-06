@@ -27,9 +27,14 @@ const Lookup = () => {
     }
 
     const filteredOptions = useMemo(() => {
-        const sorted = options.sort((a, b) => a.group_code.localeCompare(b.group_code) || a.order_index - b.order_index);
+        const sorted = options.sort((a, b) =>
+            a.group_code.localeCompare(b.group_code)
+            || a.order_index - b.order_index
+        );
 
-        return sorted.filter((item) => item.label.toLowerCase().includes(searchText.toLowerCase()));
+        return sorted.filter((item) =>
+            item.label.toLowerCase().includes(searchText.toLowerCase())
+        );
     }, [options, searchText]);
 
     const openModal = () => {
