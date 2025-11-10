@@ -5,8 +5,10 @@ import createMenuSlice from "./admin/tools/menu";
 import createLookupSlice from "./admin/tools/lookup";
 import createEmployeeSlice from "./hr/employee";
 import createPositionSlice from "./hr/position";
+import createDepartmentSlice from "./hr/department";
 
 import type { IMenuSlice } from "./admin/tools/menu";
+import type { IDepartmentSlice } from "./hr/department";
 import type { IEmployeeSlice } from "./hr/employee";
 import type { IPositionSlice } from "./hr/position";
 import type { ILookupSlice } from "./admin/tools/lookup";
@@ -15,6 +17,7 @@ import type { ILookupSlice } from "./admin/tools/lookup";
 export type RootState = 
     IMenuSlice
     & ILookupSlice
+    & IDepartmentSlice
     & IEmployeeSlice
     & IPositionSlice;
 
@@ -23,6 +26,7 @@ const useStore = create<RootState>()(
     devtools((...data) => ({
         ...createMenuSlice(...data),
         ...createLookupSlice(...data),
+        ...createDepartmentSlice(...data),
         ...createEmployeeSlice(...data),
         ...createPositionSlice(...data),
     }))

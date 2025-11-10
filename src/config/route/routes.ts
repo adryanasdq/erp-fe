@@ -28,6 +28,11 @@ export const routes = [
         layout: 'sidebar'
     },
     {
+        path: '/hr/department',
+        element: lazy(() => import('@/pages/hr/department/index')),
+        layout: 'sidebar'
+    },
+    {
         path: '/hr/employee',
         element: lazy(() => import('@/pages/hr/employee/index')),
         layout: 'sidebar'
