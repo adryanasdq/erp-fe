@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Outlet, useLocation } from "react-router";
-import { Cog, PanelLeft } from "lucide-react";
+import { Building2, PanelLeft } from "lucide-react";
 
 import useStore from "@/models/stores/index";
 import type { IMenuItem } from "@/models/types/admin/tools/menu";
@@ -104,8 +104,8 @@ const SideBar = () => {
                     className={`bg-white shadow-lg transition-all duration-300 ease-in-out 
                         ${sidebarOpen ? "w-60" : "w-0"} overflow-y-auto`}
                 >
-                    <div className="flex items-center gap-2 p-4">
-                        <Cog size={48} />
+                    <div className="flex items-center gap-3 p-4">
+                        <Building2 size={48} />
                         <div>
                             <h2 className="text-xl font-bold">ERP</h2>
                             <p className="text-sm">Enterprise</p>
