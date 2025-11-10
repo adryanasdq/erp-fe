@@ -51,7 +51,8 @@ const EmployeeTable: React.FC<EmployeeTableProps> = ({
             key: "manager_id",
             title: "Manager ID",
             align: "left",
-            minWidth: 20
+            minWidth: 20,
+            render: (row) => row.manager_id || "-"
         },
         {
             key: "hire_date",
