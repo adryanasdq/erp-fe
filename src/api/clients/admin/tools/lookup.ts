@@ -25,19 +25,19 @@ const lookupAPI: LookupAPI = {
         return res.data;
     },
     getByID: async (id, token) => {
-        const res = await adminApiFetch(token).get<ILookupItem>(`/tools/lookup-items/${id}`);
+        const res = await adminApiFetch(token).get<ILookupItem>(`/tools/lookup/${id}`);
         return res.data;
     },
     postItem: async (data, token) => {
-        const res = await adminApiFetch(token).post<ILookupItem>("/tools/lookup-items", data);
+        const res = await adminApiFetch(token).post<ILookupItem>("/tools/lookup", data);
         return res.data;
     },
     updateItem: async (data, token) => {
-        const res = await adminApiFetch(token).put<ILookupItem>(`/tools/lookup-items/${data.id}`, data);
+        const res = await adminApiFetch(token).put<ILookupItem>(`/tools/lookup/${data.id}`, data);
         return res.data;
     },
     deleteItem: async (itemId, token) => {
-        const res = await adminApiFetch(token).delete<{ message: string }>(`/tools/lookup-items/${itemId}`);
+        const res = await adminApiFetch(token).delete<{ message: string }>(`/tools/lookup/${itemId}`);
         return res.data.message;
     }
 }

@@ -6,7 +6,7 @@ interface ILookupItem {
     label: string;
     order_index?: number | null;
     is_hidden?: boolean | null;
-    modified_date?: string | null;
+    modified_date?: Date | null;
 }
 
 interface ILookupGroup {

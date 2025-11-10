@@ -8,12 +8,14 @@ interface LookupItemTableProps {
     data: ILookupGroup[];
     searchText?: string;
     handleSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleGroupClick?: (groupCode: string) => void;
 }
 
 const LookupItemTable: React.FC<LookupItemTableProps> = ({
     data,
     searchText,
-    handleSearch
+    handleSearch,
+    handleGroupClick
 }) => {
     const [pageSize, setPageSize] = useState(10);
 
@@ -26,7 +28,15 @@ const LookupItemTable: React.FC<LookupItemTableProps> = ({
             key: "group_code",
             title: "Group Code",
             align: "left",
-            minWidth: 20
+            minWidth: 20,
+            render: (item) => (
+                <div
+                    className="underline text-blue-500 cursor-pointer"
+                    onClick={() => handleGroupClick(item.group_code)}
+                >
+                    {item.group_code}
+                </div>
+            )
         },
         {
             key: "group_desc",
@@ -72,7 +82,7 @@ const LookupItemTable: React.FC<LookupItemTableProps> = ({
                     <div>entries</div>
                 </div>
             </div>
-            
+
             <DataTable
                 headers={headers}
                 data={data}

@@ -9,6 +9,7 @@ interface ILookupSlice {
     isLoading: boolean;
     fetchLookupGroups: () => Promise<void>;
     fetchLookupItems: () => Promise<void>;
+    fetchLookupItemsByGroupCode: (groupCode: string) => Promise<void>;
     createLookupItem: (data: ILookupItem, token?: string) => Promise<string>;
     updateLookupItem: (data: ILookupItem, token?: string) => Promise<string>;
     deleteLookupItem: (itemId: string, token?: string) => Promise<string>;
@@ -34,6 +35,17 @@ const createLookupSlice: StateCreator<ILookupSlice> = (set) => ({
             set({ isLoading: true });
             const data = await lookupAPI.getAll();
             set({ lookupItems: data }, false)
+        } catch {
+            // do something
+        } finally {
+            set({ isLoading: false });
+        }
+    },
+    fetchLookupItemsByGroupCode: async (groupCode) => {
+        try {
+            set({ isLoading: true });
+            const data = await lookupAPI.getByGroupCode(groupCode);
+            set({ lookupItems: data }, false);
         } catch {
             // do something
         } finally {
