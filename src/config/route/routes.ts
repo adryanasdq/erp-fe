@@ -45,6 +45,6 @@ export const routes = [
     {
         path: '*',
         element: lazy(() => import('@/pages/error/404')),
-        layout: 'blank'
+        layout: 'sidebar'
     }
 ]

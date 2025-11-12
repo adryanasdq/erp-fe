@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Outlet, useLocation } from "react-router";
-import { Building2, PanelLeft } from "lucide-react";
+import { FileText, PanelLeft } from "lucide-react";
 
 import useStore from "@/models/stores/index";
 import type { IMenuItem } from "@/models/types/admin/tools/menu";
@@ -62,14 +62,20 @@ const SideBar = () => {
             return (
                 <li key={item.id}>
                     {hasChildren ? (
-                        <details open={true}>
+                        <details open={true} className="ml-2">
                             <summary>{item.title}</summary>
                             <ul>
                                 {renderMenuItems(item.children!)}
                             </ul>
                         </details>
                     ) : (
-                        <a href={item.url || "#"}>{item.title}</a>
+                        <div className={`${location.pathname === item.url ? "bg-gray-200 text-[#646cff]" : ""}`}>
+                            <img src={item.icon} />
+                            <a
+                                href={item.url || "#"}>
+                                {item.title}
+                            </a>
+                        </div>
                     )}
                 </li>
             );
@@ -106,12 +112,16 @@ const SideBar = () => {
                         ${sidebarOpen ? "w-60" : "w-0"} overflow-y-auto`}
                 >
                     <div className="flex items-center gap-3 p-4">
-                        <Building2 size={48} />
+                        <div className="flex items-center justify-center rounded-xl p-3 bg-blue-500">
+                            <FileText size={16} className="text-white" />
+                        </div>
                         <div>
                             <h2 className="text-xl font-bold">ERP</h2>
                             <p className="text-sm">Enterprise</p>
                         </div>
                     </div>
+
+                    <hr className="text-gray-200" />
 
                     <ul className="menu rounded-box w-56">
                         <ul className="menu rounded-box w-56">
