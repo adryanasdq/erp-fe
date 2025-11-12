@@ -38,6 +38,11 @@ export const routes = [
         layout: 'sidebar'
     },
     {
+        path: '/hr/position',
+        element: lazy(() => import('@/pages/hr/position/index')),
+        layout: 'sidebar'
+    },
+    {
         path: '*',
         element: lazy(() => import('@/pages/error/404')),
         layout: 'blank'

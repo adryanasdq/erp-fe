@@ -9,6 +9,9 @@ interface IPositionSlice {
     setPositions: (position: IPosition[]) => void;
     isLoading: boolean;
     fetchPositions: () => Promise<void>;
+    createPosition: (data: IPosition, token?: string) => Promise<string>;
+    updatePosition: (data: IPosition, token?: string) => Promise<string>;
+    deletePosition: (empId: string, token?: string) => Promise<string>;
 }
 
 const createPositionSlice: StateCreator<IPositionSlice> = (set) => ({
@@ -25,6 +28,42 @@ const createPositionSlice: StateCreator<IPositionSlice> = (set) => ({
         } finally {
             set({ isLoading: false });
         }
+    },
+    createPosition: async (data, token) => {
+        try {
+            set({ isLoading: true });
+            await positionAPI.postPosition(data, token);
+        } catch {
+            // do something
+        } finally {
+            set({ isLoading: false });
+        }
+        
+        return "Position created successfully";
+    },
+    updatePosition: async (data, token) => {
+        try {
+            set({ isLoading: true });
+            await positionAPI.updatePosition(data, token);
+        } catch {
+            // do something
+        } finally {
+            set({ isLoading: false });
+        }
+
+        return "Position updated successfully";
+    },
+    deletePosition: async (empId, token) => {
+        try {
+            set({ isLoading: true });
+            await positionAPI.deletePosition(empId, token);
+        } catch {
+            // do something
+        } finally {
+            set({ isLoading: false });
+        }
+
+        return "Position deleted successfully";
     }
 });
 
