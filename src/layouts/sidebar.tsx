@@ -7,7 +7,10 @@ import type { IMenuItem } from "@/models/types/admin/tools/menu";
 
 
 const SideBar = () => {
+    const location = useLocation();
+    const pathnames = location.pathname.split("/").filter((x) => x);
     const [sidebarOpen, setSidebarOpen] = useState(true);
+
     const menus = useStore((state) => state.menus);
     const fetchMenus = useStore((state) => state.fetchMenus);
 
@@ -48,17 +51,18 @@ const SideBar = () => {
             sortChildren(node);
         });
 
-        return tree;
+        const currentMenu = tree.filter((menu) => menu.url === `/${pathnames[0]}`);
+        return currentMenu[0]?.children;
     }, [menus]);
 
     const renderMenuItems = (items: IMenuItem[]) => {
-        return items.map((item) => {
+        return items?.map((item) => {
             const hasChildren = item.children && item.children.length > 0;
 
             return (
                 <li key={item.id}>
                     {hasChildren ? (
-                        <details>
+                        <details open={true}>
                             <summary>{item.title}</summary>
                             <ul>
                                 {renderMenuItems(item.children!)}
@@ -73,9 +77,6 @@ const SideBar = () => {
     };
 
     const renderBreadcrumbs = () => {
-        const location = useLocation();
-        const pathnames = location.pathname.split("/").filter((x) => x);
-
         return (
             <div className="breadcrumbs text-sm">
                 <ul>
