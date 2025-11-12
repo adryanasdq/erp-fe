@@ -7,8 +7,8 @@ function App() {
     { title: "Finance", icon: DollarSign, path: "/finance", color: "bg-green-500" },
     { title: "Sales", icon: ShoppingCart, path: "/sales", color: "bg-orange-500" },
     { title: "Inventory", icon: Package, path: "/inventory", color: "bg-purple-500" },
-    { title: "HR", icon: Briefcase, path:"/hr", color: "bg-pink-500" },
-    { title: "Settings", icon: Settings, path:"/setting", color: "bg-gray-500" },
+    { title: "HR", icon: Briefcase, path: "/hr", color: "bg-pink-500" },
+    { title: "Settings", icon: Settings, path: "/setting", color: "bg-gray-500" },
   ];
 
   const navigate = useNavigate();
@@ -18,7 +18,11 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="flex flex-col gap-8">
+      <div>
+        <h2 className="text-xl font-semibold">Welcome back, User!</h2>
+        <p className="text-lg">Select a module to get started</p>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {modules.map((m) => {
           const Icon = m.icon;
