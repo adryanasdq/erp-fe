@@ -76,6 +76,7 @@ const SideBar = () => {
                                         key={child.id}
                                         className="tooltip tooltip-right"
                                         data-tip={child.title}
+                                        onClick={() => navigate(child.url)}
                                     >
                                         <img src={child.icon} />
                                     </div>
@@ -133,8 +134,6 @@ const SideBar = () => {
                 </nav>
 
                 <div className="p-6">
-                    <Outlet />
-                    <Outlet />
                     <Outlet />
                 </div>
             </div>
