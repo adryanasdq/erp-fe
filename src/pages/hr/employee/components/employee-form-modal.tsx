@@ -20,11 +20,13 @@ const EmployeeFormModal: React.FC<IEmployeeFormModalProps> = ({
 }) => {
     const employees = useStore((state) => state.employees);
     const positions = useStore((state) => state.positions);
+    const empStatusOptions = useStore((state) => state.lookupItems);
     const isSubmitting = useStore((state) => state.isLoading);
     const createEmployee = useStore((state) => state.createEmployee);
     const updateEmployee = useStore((state) => state.updateEmployee);
     const fetchEmployees = useStore((state) => state.fetchEmployees);
     const fetchPositions = useStore((state) => state.fetchPositions);
+    const fetchEmpStatus = useStore((state) => state.fetchLookupItemsByGroupCode)
     const [formData, setFormData] = useState(DefaultEmployee);
 
     useEffect(() => {
@@ -48,6 +50,10 @@ const EmployeeFormModal: React.FC<IEmployeeFormModalProps> = ({
     useEffect(() => {
         fetchPositions();
     }, [fetchPositions])
+
+    useEffect(() => {
+        fetchEmpStatus("EMP_STATUS");
+    }, [fetchEmpStatus])
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -140,10 +146,7 @@ const EmployeeFormModal: React.FC<IEmployeeFormModalProps> = ({
                         legend="Status"
                         name="status"
                         value={formData.status}
-                        options={[
-                            { value: 'Active', label: 'Active' },
-                            { value: 'Inactive', label: 'Inactive' },
-                        ]}
+                        options={empStatusOptions}
                         onChange={handleChange}
                     />
                 </div>
