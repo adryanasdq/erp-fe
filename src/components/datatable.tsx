@@ -50,7 +50,7 @@ const DataTable = <T extends { id?: string }>({
   }
 
   return (
-    <div className="card bg-base-100 shadow-md p-4">
+    <div className="card bg-base-100 shadow-md p-4 border border-base-300 overflow-auto">
       <table className="table mx-auto">
         <thead>
           <tr>
@@ -91,6 +91,7 @@ const DataTable = <T extends { id?: string }>({
                         {isDeletable && (
                           <button
                             onClick={() => onDelete && onDelete(row.id)}
+                            className="!bg-red-500 text-white"
                           >
                             <Trash2 size={14} />
                           </button>
