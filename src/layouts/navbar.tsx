@@ -3,7 +3,7 @@ import { Outlet } from "react-router";
 
 const Navbar = () => {
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-gray-100">
             <header className="bg-white border-b border-gray-200">
                 <div className="flex justify-between px-8 py-4 items-center">
                     <div className="flex items-center justify-center gap-4">
