@@ -35,10 +35,13 @@ const MenuFormModal: React.FC<IMenuFormModalProps> = ({
         }
     }, [mode, selectedMenu]);
 
-    const parentMenuOptions = menus.map((menu) => ({
-        value: menu.id,
-        label: menu.title
-    }));
+    const parentMenuOptions = menus
+        .filter((menu) => menu.parent_id === null)
+        .map((menu) => ({
+            value: menu.id,
+            label: menu.title
+        }
+    ));
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;

@@ -107,12 +107,15 @@ const SideBar = () => {
                     {pathnames.map((value, index) => {
                         const to = `/${pathnames.slice(0, index + 1).join("/")}`;
                         const isLast = index === pathnames.length - 1;
+                        const pascalTitle = value.split("-")
+                            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                            .join(" ");
 
                         return isLast ? (
-                            <li key={to}>{value}</li>
+                            <li key={to}>{pascalTitle}</li>
                         ) : (
                             <li key={to}>
-                                <a href={to}>{value}</a>
+                                <a href={to}>{pascalTitle}</a>
                             </li>
                         );
                     })}

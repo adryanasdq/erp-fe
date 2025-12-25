@@ -72,7 +72,7 @@ const LookupItemTable: React.FC<LookupItemTableProps> = ({
     return (
         <div>
             <div className="flex justify-between mb-4">
-                <button className="btn mr-2" onClick={openModal}>
+                <button className="btn mr-2 !bg-blue-500 text-white" onClick={openModal}>
                     <Plus /> New
                 </button>
                 <label className="input mb-2">

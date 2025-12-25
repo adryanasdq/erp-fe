@@ -8,6 +8,7 @@ import Checkbox from "@/components/data-input/checkbox";
 import useStore from "@/models/stores";
 import { ILookupItem } from "@/models/types/admin/tools/lookup";
 import { DefaultLookupItem } from "@/models/schema/admin/tools/lookup";
+import TextAreaField from "@/components/data-input/text-area";
 
 
 interface ILookupFormModalProps {
@@ -108,25 +109,24 @@ const LookupFormModal: React.FC<ILookupFormModalProps> = ({
     return (
         <Modal id="lookup-form" title={getModalTitle()}>
             <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-                <div className="flex gap-4">
-                    <SelectOption
-                        legend="Group Code"
-                        name="group_code"
-                        value={formData.group_code}
-                        options={groupOptions}
-                        onChange={handleChange}
-                        required={true}
-                    />
+                <SelectOption
+                    legend="Group Code"
+                    name="group_code"
+                    value={formData.group_code}
+                    options={groupOptions}
+                    onChange={handleChange}
+                    required={true}
+                />
 
-                    <InputField
-                        className="w-full"
-                        legend="Description"
-                        name="group_desc"
-                        value={formData.group_desc}
-                        onChange={handleChange}
-                        disabled={true}
-                    />
-                </div>
+                <TextAreaField
+                    className="w-full"
+                    legend="Description"
+                    name="group_desc"
+                    value={formData.group_desc}
+                    onChange={handleChange}
+                    disabled={true}
+                    placeholder="Description of Group Code will appear here"
+                />
 
                 <div className="flex gap-4">
                     <InputField

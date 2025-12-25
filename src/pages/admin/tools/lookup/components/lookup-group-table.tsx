@@ -31,7 +31,7 @@ const LookupItemTable: React.FC<LookupItemTableProps> = ({
             minWidth: 20,
             render: (item) => (
                 <div
-                    className="underline text-blue-500 cursor-pointer"
+                    className="badge badge-outline badge-primary cursor-pointer"
                     onClick={() => handleGroupClick(item.group_code)}
                 >
                     {item.group_code}

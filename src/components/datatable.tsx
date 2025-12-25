@@ -130,7 +130,7 @@ const DataTable = <T extends { id?: string }>({
             <button
               key={page}
               onClick={() => setCurrentPage(page)}
-              className={`join-item btn btn-xs ${currentPage === page ? "btn-active" : ""
+              className={`join-item btn btn-xs ${currentPage === page ? "btn-active text-blue-500" : ""
                 }`}
             >
               {page}
