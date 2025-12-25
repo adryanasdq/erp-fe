@@ -48,6 +48,11 @@ export const routes = [
         layout: 'sidebar'
     },
     {
+        path: '/inventory/uom',
+        element: lazy(() => import('@/pages/inventory/uom/index')),
+        layout: 'sidebar'
+    },
+    {
         path: '*',
         element: lazy(() => import('@/pages/error/404')),
         layout: 'sidebar'
