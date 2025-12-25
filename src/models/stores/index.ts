@@ -8,6 +8,7 @@ import createPositionSlice from "./hr/position";
 import createDepartmentSlice from "./hr/department";
 import createWarehouseSlice from "./inventory/warehouse";
 import createUOMSlice from "./inventory/uom";
+import createItemSlice from "./inventory/item";
 
 import type { IMenuSlice } from "./admin/tools/menu";
 import type { IDepartmentSlice } from "./hr/department";
@@ -16,6 +17,7 @@ import type { IPositionSlice } from "./hr/position";
 import type { ILookupSlice } from "./admin/tools/lookup";
 import type { IWarehouseSlice } from "./inventory/warehouse";
 import type { IUOMSlice } from "./inventory/uom";
+import type { IItemSlice } from "./inventory/item";
 
 
 export type RootState = 
@@ -25,7 +27,8 @@ export type RootState =
     & IEmployeeSlice
     & IPositionSlice
     & IWarehouseSlice
-    & IUOMSlice;
+    & IUOMSlice
+    & IItemSlice;
 
 
 const useStore = create<RootState>()(
@@ -36,7 +39,8 @@ const useStore = create<RootState>()(
         ...createEmployeeSlice(...data),
         ...createPositionSlice(...data),
         ...createWarehouseSlice(...data),
-        ...createUOMSlice(...data)
+        ...createUOMSlice(...data),
+        ...createItemSlice(...data),
     }))
 );
 
