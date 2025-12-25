@@ -19,7 +19,7 @@ const WarehouseFormModal: React.FC<IWarehouseFormModalProps> = ({
     mode,
     selectedWarehouse
 }) => {
-    const isSubmitting = useStore((state) => state.isLoading);
+    const isSubmitting = useStore((state) => state.isWarehouseLoading);
     const createWarehouse = useStore((state) => state.createWarehouse);
     const updateWarehouse = useStore((state) => state.updateWarehouse);
     const fetchWarehouses = useStore((state) => state.fetchWarehouses);

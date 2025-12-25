@@ -6,8 +6,7 @@ import { departmentAPI } from "@/api/clients/hr/department";
 
 interface IDepartmentSlice {
     departments: IDepartment[];
-    setDepartment: (department: IDepartment[]) => void;
-    isLoading: boolean;
+    isDepartmentLoading: boolean;
     fetchDepartments: () => Promise<void>;
     createDepartment: (data: IDepartment, token?: string) => Promise<string>;
     updateDepartment: (data: IDepartment, token?: string) => Promise<string>;
@@ -16,51 +15,51 @@ interface IDepartmentSlice {
 
 const createDepartmentSlice: StateCreator<IDepartmentSlice> = (set) => ({
     departments: [],
-    isLoading: false,
+    isDepartmentLoading: false,
     setDepartment: (departments) => set(() => ({ departments })),
     fetchDepartments: async () => {
         try {
-            set({ isLoading: true });
+            set({ isDepartmentLoading: true });
             const data = await departmentAPI.getAll();
             set({ departments: data }, false)
         } catch {
             // do something
         } finally {
-            set({ isLoading: false });
+            set({ isDepartmentLoading: false });
         }
     },
     createDepartment: async (data, token) => {
         try {
-            set({ isLoading: true });
+            set({ isDepartmentLoading: true });
             await departmentAPI.postDepartment(data, token);
         } catch {
             // do something
         } finally {
-            set({ isLoading: false });
+            set({ isDepartmentLoading: false });
         }
         
         return "Employee created successfully";
     },
     updateDepartment: async (data, token) => {
         try {
-            set({ isLoading: true });
+            set({ isDepartmentLoading: true });
             await departmentAPI.updateDepartment(data, token);
         } catch {
             // do something
         } finally {
-            set({ isLoading: false });
+            set({ isDepartmentLoading: false });
         }
 
         return "Employee updated successfully";
     },
     deleteDepartment: async (empId, token) => {
         try {
-            set({ isLoading: true });
+            set({ isDepartmentLoading: true });
             await departmentAPI.deleteDepartment(empId, token);
         } catch {
             // do something
         } finally {
-            set({ isLoading: false });
+            set({ isDepartmentLoading: false });
         }
         
         return "Employee deleted successfully";

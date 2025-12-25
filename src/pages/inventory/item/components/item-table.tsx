@@ -56,7 +56,7 @@ const ItemTable: React.FC<ItemTableProps> = ({
         },
         {
             key: "is_hidden",
-            title: "Is Hidden",
+            title: "Hidden",
             align: "left",
             minWidth: 20,
             render: (item) => (item.is_hidden ? "Yes" : "No")

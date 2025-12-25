@@ -5,7 +5,6 @@ import { IWarehouse } from "@/models/types/inventory/warehouse";
 
 interface IWarehouseSlice {
     warehouses: IWarehouse[];
-    setWarehouses: (warehouses: IWarehouse[]) => void;
     isWarehouseLoading: boolean;
     fetchWarehouses: () => Promise<void>;
     createWarehouse: (data: IWarehouse, token?: string) => Promise<string>;
@@ -16,7 +15,6 @@ interface IWarehouseSlice {
 const createWarehouseSlice: StateCreator<IWarehouseSlice> = (set) => ({
     warehouses: [],
     isWarehouseLoading: false,
-    setWarehouses: (warehouses) => set(() => ({ warehouses })),
     fetchWarehouses: async () => {
         try {
             set({ isWarehouseLoading: true });

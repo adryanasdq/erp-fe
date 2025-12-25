@@ -22,7 +22,7 @@ const LookupFormModal: React.FC<ILookupFormModalProps> = ({
     const fetchLookupItems = useStore((state) => state.fetchLookupItems);
     const createLookupItem = useStore((state) => state.createLookupItem);
     const updateLookupItem = useStore((state) => state.updateLookupItem);
-    const isSubmitting = useStore((state) => state.isLoading);
+    const isSubmitting = useStore((state) => state.isLookupLoading);
     const groups = useStore((state) => state.lookupGroups);
     
     const [formData, setFormData] = useState<ILookupItem>(DefaultLookupItem);

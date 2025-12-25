@@ -1,6 +1,5 @@
 import { useMemo, useState } from "react";
-import { Pencil } from "lucide-react";
-import { Trash2 } from "lucide-react";
+import { Pencil, Trash2 } from "lucide-react";
 
 type TextAlign = "left" | "right" | "center" | "justify" | "start" | "end";
 

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 import InputField from "@/components/data-input/input-field";
 import Modal from "@/components/modal"
-import SelectOption from "@/components/data-input/select-option";
 
 import useStore from "@/models/stores";
 import { DefaultDepartment } from "@/models/schema/hr/department";
@@ -19,7 +18,7 @@ const DepartmentFormModal: React.FC<IDepartmentFormModalProps> = ({
     mode,
     selectedDepartment
 }) => {
-    const isSubmitting = useStore((state) => state.isLoading);
+    const isSubmitting = useStore((state) => state.isDepartmentLoading);
     const createDepartment = useStore((state) => state.createDepartment);
     const updateDepartment = useStore((state) => state.updateDepartment);
     const fetchDepartments = useStore((state) => state.fetchDepartments);

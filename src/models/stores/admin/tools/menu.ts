@@ -6,8 +6,7 @@ import { menuAPI } from "src/api/clients/admin/tools/menu";
 
 interface IMenuSlice {
     menus: IMenuItem[];
-    setMenus: (menus: IMenuItem[]) => void;
-    isLoading: boolean;
+    isMenuLoading: boolean;
     fetchMenus: () => Promise<void>;
     createMenu: (data: IMenuItem, token?: string) => Promise<string>;
     updateMenu: (data: IMenuItem, token?: string) => Promise<string>;
@@ -16,51 +15,50 @@ interface IMenuSlice {
 
 const createMenuSlice: StateCreator<IMenuSlice> = (set) => ({
     menus: [],
-    isLoading: false,
-    setMenus: (menus) => set(() => ({ menus })),
+    isMenuLoading: false,
     fetchMenus: async () => {
         try {
-            set({ isLoading: true });
+            set({ isMenuLoading: true });
             const data = await menuAPI.getAll();
             set({ menus: data }, false)
         } catch {
             // do something
         } finally {
-            set({ isLoading: false });
+            set({ isMenuLoading: false });
         }
     },
     createMenu: async (data, token) => {
         try {
-            set({ isLoading: true });
+            set({ isMenuLoading: true });
             await menuAPI.postMenu(data, token);
         } catch {
             // do something
         } finally {
-            set({ isLoading: false });
+            set({ isMenuLoading: false });
         }
         
         return "Menu created successfully";
     },
     updateMenu: async (data, token) => {
         try {
-            set({ isLoading: true });
+            set({ isMenuLoading: true });
             await menuAPI.updateMenu(data, token);
         } catch {
             // do something
         } finally {
-            set({ isLoading: false });
+            set({ isMenuLoading: false });
         }
 
         return "Menu updated successfully";
     },
     deleteMenu: async (menuId, token) => {
         try {
-            set({ isLoading: true });
+            set({ isMenuLoading: true });
             await menuAPI.deleteMenu(menuId, token);
         } catch {
             // do something
         } finally {
-            set({ isLoading: false });
+            set({ isMenuLoading: false });
         }
 
         return "Menu deleted successfully";

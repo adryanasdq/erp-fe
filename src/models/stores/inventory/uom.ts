@@ -5,7 +5,6 @@ import { IUOM } from "@/models/types/inventory/uom";
 
 interface IUOMSlice {
     uoms: IUOM[];
-    setUOMs: (uoms: IUOM[]) => void;
     isUOMLoading: boolean;
     fetchUOMs: () => Promise<void>;
     createUOM: (data: IUOM, token?: string) => Promise<string>;
@@ -16,7 +15,6 @@ interface IUOMSlice {
 const createUOMSlice: StateCreator<IUOMSlice> = (set) => ({
     uoms: [],
     isUOMLoading: false,
-    setUOMs: (uoms) => set(() => ({ uoms })),
     fetchUOMs: async () => {
         try {
             set({ isUOMLoading: true });

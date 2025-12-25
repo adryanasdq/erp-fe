@@ -6,8 +6,7 @@ import { positionAPI } from "@/api/clients/hr/position";
 
 interface IPositionSlice {
     positions: IPosition[];
-    setPositions: (position: IPosition[]) => void;
-    isLoading: boolean;
+    isPositionLoading: boolean;
     fetchPositions: () => Promise<void>;
     createPosition: (data: IPosition, token?: string) => Promise<string>;
     updatePosition: (data: IPosition, token?: string) => Promise<string>;
@@ -16,51 +15,50 @@ interface IPositionSlice {
 
 const createPositionSlice: StateCreator<IPositionSlice> = (set) => ({
     positions: [],
-    isLoading: false,
-    setPositions: (positions) => set(() => ({ positions })),
+    isPositionLoading: false,
     fetchPositions: async () => {
         try {
-            set({ isLoading: true });
+            set({ isPositionLoading: true });
             const data = await positionAPI.getAll();
             set({ positions: data }, false)
         } catch {
             // do something
         } finally {
-            set({ isLoading: false });
+            set({ isPositionLoading: false });
         }
     },
     createPosition: async (data, token) => {
         try {
-            set({ isLoading: true });
+            set({ isPositionLoading: true });
             await positionAPI.postPosition(data, token);
         } catch {
             // do something
         } finally {
-            set({ isLoading: false });
+            set({ isPositionLoading: false });
         }
         
         return "Position created successfully";
     },
     updatePosition: async (data, token) => {
         try {
-            set({ isLoading: true });
+            set({ isPositionLoading: true });
             await positionAPI.updatePosition(data, token);
         } catch {
             // do something
         } finally {
-            set({ isLoading: false });
+            set({ isPositionLoading: false });
         }
 
         return "Position updated successfully";
     },
     deletePosition: async (empId, token) => {
         try {
-            set({ isLoading: true });
+            set({ isPositionLoading: true });
             await positionAPI.deletePosition(empId, token);
         } catch {
             // do something
         } finally {
-            set({ isLoading: false });
+            set({ isPositionLoading: false });
         }
 
         return "Position deleted successfully";

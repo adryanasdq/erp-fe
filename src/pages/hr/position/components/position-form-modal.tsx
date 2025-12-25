@@ -20,7 +20,7 @@ const PositionFormModal: React.FC<IPositionFormModalProps> = ({
     selectedPosition
 }) => {
     const departments = useStore((state) => state.departments);
-    const isSubmitting = useStore((state) => state.isLoading);
+    const isSubmitting = useStore((state) => state.isPositionLoading);
     const createPosition = useStore((state) => state.createPosition);
     const updatePosition = useStore((state) => state.updatePosition);
     const fetchDepartments = useStore((state) => state.fetchDepartments);

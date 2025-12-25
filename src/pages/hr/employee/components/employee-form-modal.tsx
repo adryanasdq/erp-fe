@@ -21,7 +21,7 @@ const EmployeeFormModal: React.FC<IEmployeeFormModalProps> = ({
     const employees = useStore((state) => state.employees);
     const positions = useStore((state) => state.positions);
     const empStatusOptions = useStore((state) => state.lookupItems);
-    const isSubmitting = useStore((state) => state.isLoading);
+    const isSubmitting = useStore((state) => state.isEmployeeLoading);
     const createEmployee = useStore((state) => state.createEmployee);
     const updateEmployee = useStore((state) => state.updateEmployee);
     const fetchEmployees = useStore((state) => state.fetchEmployees);

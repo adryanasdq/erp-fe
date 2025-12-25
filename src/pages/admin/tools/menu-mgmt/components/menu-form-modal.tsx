@@ -21,7 +21,7 @@ const MenuFormModal: React.FC<IMenuFormModalProps> = ({
     selectedMenu
 }) => {
     const menus = useStore((state) => state.menus);
-    const isSubmitting = useStore((state) => state.isLoading);
+    const isSubmitting = useStore((state) => state.isMenuLoading);
     const createMenu = useStore((state) => state.createMenu);
     const updateMenu = useStore((state) => state.updateMenu);
     const fetchMenus = useStore((state) => state.fetchMenus);

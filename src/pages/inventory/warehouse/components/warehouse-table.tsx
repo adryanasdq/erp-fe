@@ -31,12 +31,6 @@ const WarehouseTable: React.FC<WarehouseTableProps> = ({
 
     const headers: TableHeaders<IWarehouse>[] = [
         {
-            key: "id",
-            title: "ID",
-            align: "left",
-            minWidth: 20
-        },
-        {
             key: "name",
             title: "Name",
             align: "left",
