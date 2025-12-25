@@ -25,8 +25,6 @@ const ItemFormModal: React.FC<IItemFormModalProps> = ({
     const createItem = useStore((state) => state.createItem);
     const updateItem = useStore((state) => state.updateItem);
     const fetchItems = useStore((state) => state.fetchItems);
-    const fetchUOMs = useStore((state) => state.fetchUOMs);
-    const fetchItemCategory = useStore((state) => state.fetchLookupItemsByGroupCode)
     const [formData, setFormData] = useState(DefaultItem);
 
     useEffect(() => {
@@ -41,14 +39,6 @@ const ItemFormModal: React.FC<IItemFormModalProps> = ({
         value: uom.id,
         label: uom.symbol,
     }));
-
-    useEffect(() => {
-        fetchItemCategory("ITEM_CATEGORY");
-    }, [fetchItemCategory])
-
-    useEffect(() => {
-        fetchUOMs();
-    }, [fetchUOMs])
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;

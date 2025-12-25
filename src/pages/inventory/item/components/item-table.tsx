@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Plus } from "lucide-react";
 
 import DataTable from "@/components/datatable";
 import type { TableHeaders } from "@/components/datatable";
 
 import type { IItem } from "@/models/types/inventory/item";
+import useStore from "@/models/stores";
 
 interface ItemTableProps {
     data: IItem[];
@@ -24,6 +25,20 @@ const ItemTable: React.FC<ItemTableProps> = ({
     handleSearch
 }) => {
     const [pageSize, setPageSize] = useState(10);
+    const itemCategories = useStore((state) => state.lookupItems);
+    const uoms = useStore((state) => state.uoms);
+
+    const categoryMap = useMemo(() => {
+        return Object.fromEntries(
+            itemCategories.map((cat) => [cat.value, cat.label])
+        );
+    }, [itemCategories]);
+
+    const uomMap = useMemo(() => {
+        return Object.fromEntries(
+            uoms.map((uom) => [uom.id, uom.name])
+        )
+    }, [uoms]);
 
     const handlePageSize = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setPageSize(Number(e.target.value));
@@ -46,13 +61,15 @@ const ItemTable: React.FC<ItemTableProps> = ({
             key: "category",
             title: "Category",
             align: "left",
-            minWidth: 20
+            minWidth: 20,
+            render: (item) => categoryMap[item.category]
         },
         {
             key: "uom_id",
             title: "UOM",
             align: "left",
-            minWidth: 20
+            minWidth: 20,
+            render: (item) => uomMap[item.uom_id]
         },
         {
             key: "is_hidden",

@@ -11,6 +11,8 @@ const ItemPage = () => {
     const items = useStore((state) => state.items);
     const fetchItems = useStore((state) => state.fetchItems);
     const deleteItem = useStore((state) => state.deleteItem);
+    const fetchItemCategory = useStore((state) => state.fetchLookupItemsByGroupCode);
+    const fetchUOMs = useStore((state) => state.fetchUOMs);
 
     const [selectedItem, setSelectedItem] = useState<IItem | null>(null);
     const [formDialogMode, setFormDialogMode] = useState<"new" | "edit" | "view">("new");
@@ -25,6 +27,14 @@ const ItemPage = () => {
     useEffect(() => {
         fetchItems();
     }, [fetchItems])
+
+    useEffect(() => {
+        fetchItemCategory("ITEM_CATEGORY");
+    }, [fetchItemCategory])
+
+    useEffect(() => {
+        fetchUOMs();
+    }, [fetchUOMs])
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchText(e.target.value);
