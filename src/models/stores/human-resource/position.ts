@@ -1,7 +1,7 @@
 import type { StateCreator } from "zustand";
 
-import type { IPosition } from "@/models/types/hr/position";
-import { positionAPI } from "@/api/clients/hr/position";
+import type { IPosition } from "@/models/types/human-resource/position";
+import { positionAPI } from "@/api/clients/human-resource/position";
 
 
 interface IPositionSlice {

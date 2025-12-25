@@ -6,8 +6,8 @@ import SelectOption from "@/components/data-input/select-option";
 import TextAreaField from "@/components/data-input/text-area";
 
 import useStore from "@/models/stores";
-import { DefaultPosition } from "@/models/schema/hr/position";
-import { IPosition } from "@/models/types/hr/position";
+import { DefaultPosition } from "@/models/schema/human-resource/position";
+import { IPosition } from "@/models/types/human-resource/position";
 
 interface IPositionFormModalProps {
     mode: string;

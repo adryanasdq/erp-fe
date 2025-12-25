@@ -1,4 +1,4 @@
-import type { IEmployee } from "@/models/types/hr/employee";
+import type { IEmployee } from "@/models/types/human-resource/employee";
 import { hrApiFetch } from "@/api/base";
 
 

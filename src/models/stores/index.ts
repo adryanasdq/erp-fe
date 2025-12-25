@@ -3,17 +3,17 @@ import { devtools } from "zustand/middleware";
 
 import createMenuSlice from "./admin/tools/menu";
 import createLookupSlice from "./admin/tools/lookup";
-import createEmployeeSlice from "./hr/employee";
-import createPositionSlice from "./hr/position";
-import createDepartmentSlice from "./hr/department";
+import createEmployeeSlice from "./human-resource/employee";
+import createPositionSlice from "./human-resource/position";
+import createDepartmentSlice from "./human-resource/department";
 import createWarehouseSlice from "./inventory/warehouse";
 import createUOMSlice from "./inventory/uom";
 import createItemSlice from "./inventory/item";
 
 import type { IMenuSlice } from "./admin/tools/menu";
-import type { IDepartmentSlice } from "./hr/department";
-import type { IEmployeeSlice } from "./hr/employee";
-import type { IPositionSlice } from "./hr/position";
+import type { IDepartmentSlice } from "./human-resource/department";
+import type { IEmployeeSlice } from "./human-resource/employee";
+import type { IPositionSlice } from "./human-resource/position";
 import type { ILookupSlice } from "./admin/tools/lookup";
 import type { IWarehouseSlice } from "./inventory/warehouse";
 import type { IUOMSlice } from "./inventory/uom";

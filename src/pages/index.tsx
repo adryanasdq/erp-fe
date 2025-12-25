@@ -7,7 +7,7 @@ function App() {
     { title: "Finance", icon: DollarSign, path: "/finance", color: "bg-green-500" },
     { title: "Sales", icon: ShoppingCart, path: "/sales", color: "bg-orange-500" },
     { title: "Inventory", icon: Package, path: "/inventory", color: "bg-purple-500" },
-    { title: "HR", icon: Briefcase, path: "/hr", color: "bg-pink-500" },
+    { title: "Human Resource", icon: Briefcase, path: "/human-resource", color: "bg-pink-500" },
     { title: "Settings", icon: Settings, path: "/setting", color: "bg-gray-500" },
   ];
 

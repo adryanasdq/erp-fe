@@ -1,7 +1,7 @@
 import type { StateCreator } from "zustand";
 
-import type { IDepartment } from "@/models/types/hr/department";
-import { departmentAPI } from "@/api/clients/hr/department";
+import type { IDepartment } from "@/models/types/human-resource/department";
+import { departmentAPI } from "@/api/clients/human-resource/department";
 
 
 interface IDepartmentSlice {

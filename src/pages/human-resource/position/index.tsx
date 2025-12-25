@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 
 import useStore from "@/models/stores/index";
-import { IPosition } from "@/models/types/hr/position";
+import { IPosition } from "@/models/types/human-resource/position";
 
 import PositionTable from "./components/position-table";
 import PositionFormModal from "./components/position-form-modal";

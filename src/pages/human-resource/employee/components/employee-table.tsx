@@ -3,7 +3,7 @@ import { Plus } from "lucide-react";
 
 import DataTable, { type TableHeaders } from "@/components/datatable";
 
-import type { IEmployee } from "@/models/types/hr/employee"
+import type { IEmployee } from "@/models/types/human-resource/employee"
 import useStore from "@/models/stores";
 
 interface EmployeeTableProps {

@@ -1,7 +1,7 @@
 import type { StateCreator } from "zustand";
 
-import type { IEmployee } from "@/models/types/hr/employee";
-import { employeeAPI } from "@/api/clients/hr/employee";
+import type { IEmployee } from "@/models/types/human-resource/employee";
+import { employeeAPI } from "@/api/clients/human-resource/employee";
 
 
 interface IEmployeeSlice {

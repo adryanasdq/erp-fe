@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 
 import useStore from "@/models/stores/index";
-import { IEmployee } from "@/models/types/hr/employee";
+import { IEmployee } from "@/models/types/human-resource/employee";
 
 import EmployeeSummary from "./components/employee-summary";
 import EmployeeTable from "./components/employee-table";

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 
 import useStore from "@/models/stores/index";
-import { IDepartment } from "@/models/types/hr/department";
+import { IDepartment } from "@/models/types/human-resource/department";
 
 import DepartmentTable from "./components/department-table";
 import EmployeeFormModal from "./components/department-form-modal";

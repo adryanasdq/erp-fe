@@ -23,23 +23,23 @@ export const routes = [
         layout: 'sidebar'
     },
     {
-        path: '/hr',
-        element: lazy(() => import('@/pages/hr/index')),
+        path: '/human-resource',
+        element: lazy(() => import('@/pages/human-resource/index')),
         layout: 'sidebar'
     },
     {
-        path: '/hr/department',
-        element: lazy(() => import('@/pages/hr/department/index')),
+        path: '/human-resource/department',
+        element: lazy(() => import('@/pages/human-resource/department/index')),
         layout: 'sidebar'
     },
     {
-        path: '/hr/employee',
-        element: lazy(() => import('@/pages/hr/employee/index')),
+        path: '/human-resource/employee',
+        element: lazy(() => import('@/pages/human-resource/employee/index')),
         layout: 'sidebar'
     },
     {
-        path: '/hr/position',
-        element: lazy(() => import('@/pages/hr/position/index')),
+        path: '/human-resource/position',
+        element: lazy(() => import('@/pages/human-resource/position/index')),
         layout: 'sidebar'
     },
     {

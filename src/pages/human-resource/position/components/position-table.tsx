@@ -4,7 +4,7 @@ import { Plus } from "lucide-react";
 import DataTable from "@/components/datatable";
 import type { TableHeaders } from "@/components/datatable";
 
-import type { IPosition } from "@/models/types/hr/position";
+import type { IPosition } from "@/models/types/human-resource/position";
 
 interface PositionTableProps {
     data: IPosition[];

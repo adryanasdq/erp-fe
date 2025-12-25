@@ -1,4 +1,4 @@
-import { IEmployee } from "@/models/types/hr/employee";
+import { IEmployee } from "@/models/types/human-resource/employee";
 
 const DefaultEmployee: IEmployee = {
     name: '',

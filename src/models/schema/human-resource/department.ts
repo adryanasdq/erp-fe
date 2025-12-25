@@ -1,4 +1,4 @@
-import { IDepartment } from "@/models/types/hr/department";
+import { IDepartment } from "@/models/types/human-resource/department";
 
 const DefaultDepartment: IDepartment = {
     id: '',

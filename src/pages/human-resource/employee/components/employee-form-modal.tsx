@@ -5,8 +5,8 @@ import Modal from "@/components/modal"
 import SelectOption from "@/components/data-input/select-option";
 
 import useStore from "@/models/stores";
-import { DefaultEmployee } from "@/models/schema/hr/employee";
-import { IEmployee } from "@/models/types/hr/employee";
+import { DefaultEmployee } from "@/models/schema/human-resource/employee";
+import { IEmployee } from "@/models/types/human-resource/employee";
 
 interface IEmployeeFormModalProps {
     mode: string;

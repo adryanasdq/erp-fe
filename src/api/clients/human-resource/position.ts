@@ -1,4 +1,4 @@
-import type { IPosition } from "@/models/types/hr/position";
+import type { IPosition } from "@/models/types/human-resource/position";
 import { hrApiFetch } from "@/api/base";
 
 

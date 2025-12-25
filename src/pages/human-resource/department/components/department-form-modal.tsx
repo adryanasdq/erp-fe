@@ -4,8 +4,8 @@ import InputField from "@/components/data-input/input-field";
 import Modal from "@/components/modal"
 
 import useStore from "@/models/stores";
-import { DefaultDepartment } from "@/models/schema/hr/department";
-import { IDepartment } from "@/models/types/hr/department";
+import { DefaultDepartment } from "@/models/schema/human-resource/department";
+import { IDepartment } from "@/models/types/human-resource/department";
 import TextAreaField from "@/components/data-input/text-area";
 
 interface IDepartmentFormModalProps {

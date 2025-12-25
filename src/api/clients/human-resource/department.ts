@@ -1,4 +1,4 @@
-import type { IDepartment } from "@/models/types/hr/department";
+import type { IDepartment } from "@/models/types/human-resource/department";
 import { hrApiFetch } from "@/api/base";
 
 

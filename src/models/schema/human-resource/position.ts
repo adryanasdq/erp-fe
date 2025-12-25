@@ -1,4 +1,4 @@
-import { IPosition } from "@/models/types/hr/position";
+import { IPosition } from "@/models/types/human-resource/position";
 
 const DefaultPosition: IPosition = {
     id: '',
