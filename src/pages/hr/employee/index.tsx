@@ -12,6 +12,8 @@ const EmployeePage = () => {
     const data = useStore((state) => state.employees);
     const fetchData = useStore((state) => state.fetchEmployees);
     const deleteEmployee = useStore((state) => state.deleteEmployee);
+    const fetchPositions = useStore((state) => state.fetchPositions);
+    const fetchEmpStatus = useStore((state) => state.fetchLookupItemsByGroupCode)
 
     const [selectedEmployee, setSelectedEmployee] = useState<IEmployee | null>(null);
     const [formDialogMode, setFormDialogMode] = useState<"new" | "edit" | "view">("new");
@@ -26,6 +28,14 @@ const EmployeePage = () => {
     useEffect(() => {
         fetchData();
     }, [fetchData])
+
+    useEffect(() => {
+        fetchPositions();
+    }, [fetchPositions])
+
+    useEffect(() => {
+        fetchEmpStatus("EMP_STATUS");
+    }, [fetchEmpStatus])
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchText(e.target.value);

@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Plus } from "lucide-react";
 
 import DataTable from "@/components/datatable";
 import type { TableHeaders } from "@/components/datatable";
 
 import type { IUOM } from "@/models/types/inventory/uom";
+import useStore from "@/models/stores";
 
 interface UOMTableProps {
     data: IUOM[];
@@ -24,6 +25,13 @@ const UOMTable: React.FC<UOMTableProps> = ({
     handleSearch
 }) => {
     const [pageSize, setPageSize] = useState(10);
+    const uomTypes = useStore((state) => state.lookupItems);
+
+    const uomTypeMap = useMemo(() => {
+        return Object.fromEntries(
+            uomTypes.map((type) => [type.value, type.label])
+        );
+    }, [uomTypes]);
 
     const handlePageSize = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setPageSize(Number(e.target.value));
@@ -46,7 +54,8 @@ const UOMTable: React.FC<UOMTableProps> = ({
             key: "type",
             title: "Type",
             align: "left",
-            minWidth: 20
+            minWidth: 20,
+            render: (row) => uomTypeMap[row.type]
         },
         {
             key: "modified_date",

@@ -19,11 +19,10 @@ const UOMFormModal: React.FC<IUOMFormModalProps> = ({
     selectedUOM
 }) => {
     const isSubmitting = useStore((state) => state.isUOMLoading);
-    const uomTypesOptions = useStore((state) => state.lookupItems)
+    const uomTypesOptions = useStore((state) => state.lookupItems);
     const createUOM = useStore((state) => state.createUOM);
     const updateUOM = useStore((state) => state.updateUOM);
     const fetchUOMs = useStore((state) => state.fetchUOMs);
-    const fetchUOMTypes = useStore((state) => state.fetchLookupItemsByGroupCode)
     const [formData, setFormData] = useState(DefaultUOM);
 
     useEffect(() => {
@@ -33,10 +32,6 @@ const UOMFormModal: React.FC<IUOMFormModalProps> = ({
             setFormData(DefaultUOM);
         }
     }, [mode, selectedUOM]);
-
-    useEffect(() => {
-        fetchUOMTypes("UOM_TYPE");
-    }, [fetchUOMTypes])
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;

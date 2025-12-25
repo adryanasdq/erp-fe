@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Plus } from "lucide-react";
 
 import DataTable, { type TableHeaders } from "@/components/datatable";
 
 import type { IEmployee } from "@/models/types/hr/employee"
+import useStore from "@/models/stores";
 
 interface EmployeeTableProps {
     data: IEmployee[];
@@ -23,6 +24,27 @@ const EmployeeTable: React.FC<EmployeeTableProps> = ({
     handleSearch
 }) => {
     const [pageSize, setPageSize] = useState(10);
+    const positions = useStore((state) => state.positions);
+    const empStatusOptions = useStore((state) => state.lookupItems);
+    const employees = useStore((state) => state.employees);
+
+    const mapPosition = useMemo(() => {
+        return Object.fromEntries(
+            positions.map((pos) => [pos.id, pos.title])
+        );
+    }, [positions])
+
+    const mapEmpStatus = useMemo(() => {
+        return Object.fromEntries(
+            empStatusOptions.map((stat) => [stat.value, stat.label])
+        );
+    }, [empStatusOptions])
+
+    const mapEmployee = useMemo(() => {
+        return Object.fromEntries(
+            employees.map((emp) => [emp.id, emp.name])
+        );
+    }, [employees])
 
     const handlePageSize = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setPageSize(Number(e.target.value));
@@ -43,16 +65,17 @@ const EmployeeTable: React.FC<EmployeeTableProps> = ({
         },
         {
             key: "position_id",
-            title: "Position ID",
+            title: "Position",
             align: "left",
-            minWidth: 20
+            minWidth: 20,
+            render: (row) => mapPosition[row.position_id]
         },
         {
             key: "manager_id",
-            title: "Manager ID",
+            title: "Manager",
             align: "left",
             minWidth: 20,
-            render: (row) => row.manager_id || "-"
+            render: (row) => mapEmployee[row.manager_id] || "-"
         },
         {
             key: "hire_date",
@@ -64,7 +87,8 @@ const EmployeeTable: React.FC<EmployeeTableProps> = ({
             key: "status",
             title: "Status",
             align: "left",
-            minWidth: 20
+            minWidth: 20,
+            render: (row) => mapEmpStatus[row.status]
         },
         {
             key: "modified_date",

@@ -25,8 +25,6 @@ const EmployeeFormModal: React.FC<IEmployeeFormModalProps> = ({
     const createEmployee = useStore((state) => state.createEmployee);
     const updateEmployee = useStore((state) => state.updateEmployee);
     const fetchEmployees = useStore((state) => state.fetchEmployees);
-    const fetchPositions = useStore((state) => state.fetchPositions);
-    const fetchEmpStatus = useStore((state) => state.fetchLookupItemsByGroupCode)
     const [formData, setFormData] = useState(DefaultEmployee);
 
     useEffect(() => {
@@ -46,14 +44,6 @@ const EmployeeFormModal: React.FC<IEmployeeFormModalProps> = ({
         value: emp.id,
         label: emp.name
     }));
-
-    useEffect(() => {
-        fetchPositions();
-    }, [fetchPositions])
-
-    useEffect(() => {
-        fetchEmpStatus("EMP_STATUS");
-    }, [fetchEmpStatus])
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;

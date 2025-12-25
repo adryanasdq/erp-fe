@@ -10,7 +10,8 @@ import UOMFormModal from "./components/uom-form-modal";
 const UOMPage = () => {
     const uoms = useStore((state) => state.uoms);
     const fetchUOMs = useStore((state) => state.fetchUOMs);
-    const deleteUOM = useStore((state) => state.deleteUOM);   
+    const deleteUOM = useStore((state) => state.deleteUOM);
+    const fetchUOMTypes = useStore((state) => state.fetchLookupItemsByGroupCode);
 
     const [selectedUOM, setSelectedUOM] = useState<IUOM | null>(null);
     const [formDialogMode, setFormDialogMode] = useState<"new" | "edit" | "view">("new");
@@ -25,6 +26,10 @@ const UOMPage = () => {
     useEffect(() => {
         fetchUOMs();
     }, [fetchUOMs])
+
+    useEffect(() => {
+        fetchUOMTypes("UOM_TYPE");
+    }, [fetchUOMTypes])
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchText(e.target.value);
