@@ -1,7 +1,7 @@
 import { IItem } from "@/models/types/inventory/item";
 import { inventoryApiFetch } from "@/api/base";
 
-interface ItemAPI {
+interface IItemAPI {
     getAll: (token?: string) => Promise<IItem[]>;
     getByID: (id: string, token?: string) => Promise<IItem>;
     postItem: (data: IItem, token?: string) => Promise<IItem>;
@@ -9,7 +9,7 @@ interface ItemAPI {
     deleteItem: (id: string, token?: string) => Promise<string>;
 }
 
-const itemAPI: ItemAPI = {
+const itemAPI: IItemAPI = {
     getAll: async (token) => {
         const res = await inventoryApiFetch(token).get<IItem[]>("/items");
         return res.data;
