@@ -4,7 +4,6 @@ interface IStockBalance {
     warehouse_id: string;
     qty: number;
     qty_reserved: number;
-    qty_available: number;
     modified_date: Date;
 }
 

@@ -1,5 +1,4 @@
 import { useMemo, useState } from "react";
-import { Plus } from "lucide-react";
 
 import DataTable from "@/components/datatable";
 import type { TableHeaders } from "@/components/datatable";
@@ -66,10 +65,11 @@ const StockBalanceTable: React.FC<StockBalanceTableProps> = ({
             minWidth: 20,
         },
         {
-            key: "qty_available",
+            key: "qty",
             title: "Qty. Available",
             align: "left",
             minWidth: 20,
+            render: (row) => row.qty - row.qty_reserved
         },
         {
             key: "modified_date",
