@@ -63,6 +63,11 @@ export const routes = [
         layout: 'sidebar'
     },
     {
+        path: '/inventory/uom-conversion',
+        element: lazy(() => import('@/pages/inventory/item-uom-conversion')),
+        layout: 'sidebar'
+    },
+    {
         path: '*',
         element: lazy(() => import('@/pages/error/404')),
         layout: 'sidebar'

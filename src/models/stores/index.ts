@@ -10,6 +10,7 @@ import createWarehouseSlice from "./inventory/warehouse";
 import createUOMSlice from "./inventory/uom";
 import createItemSlice from "./inventory/item";
 import createStockBalanceSlice from "./inventory/stock-balance";
+import createuomConversionSlice from "./inventory/item-uom-conversion";
 
 import type { IMenuSlice } from "./admin/tools/menu";
 import type { IDepartmentSlice } from "./human-resource/department";
@@ -20,6 +21,7 @@ import type { IWarehouseSlice } from "./inventory/warehouse";
 import type { IUOMSlice } from "./inventory/uom";
 import type { IItemSlice } from "./inventory/item";
 import type { IStockBalanceSlice } from "./inventory/stock-balance";
+import type { IUOMConversionSlice } from "./inventory/item-uom-conversion";
 
 
 export type RootState = 
@@ -31,7 +33,8 @@ export type RootState =
     & IWarehouseSlice
     & IUOMSlice
     & IItemSlice
-    & IStockBalanceSlice;
+    & IStockBalanceSlice
+    & IUOMConversionSlice;
 
 
 const useStore = create<RootState>()(
@@ -45,6 +48,7 @@ const useStore = create<RootState>()(
         ...createUOMSlice(...data),
         ...createItemSlice(...data),
         ...createStockBalanceSlice(...data),
+        ...createuomConversionSlice(...data),
     }))
 );
 

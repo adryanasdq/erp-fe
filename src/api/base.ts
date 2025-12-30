@@ -65,6 +65,23 @@ const createApiFetch = (baseURL: string, token?: string) => {
             };
         },
 
+        async patch<T>(endpoint: string, body: unknown): Promise<Response<T>> {
+            const res = await fetch(`${baseURL}${endpoint}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+                },
+                body: JSON.stringify(body),
+            });
+
+            return {
+                data: (await res.json()) as T,
+                status: res.status,
+                ok: res.ok,
+            };
+        },
+
         async delete<T>(endpoint: string): Promise<Response<T>> {
             const res = await fetch(`${baseURL}${endpoint}`, {
                 method: "DELETE",
