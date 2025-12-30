@@ -103,7 +103,7 @@ const SideBar = () => {
         return (
             <div className="breadcrumbs text-sm">
                 <ul>
-                    <li><a href="/">Home</a></li>
+                    <li><a href="/" className="hover:!text-yellow-300">Home</a></li>
                     {pathnames.map((value, index) => {
                         const to = `/${pathnames.slice(0, index + 1).join("/")}`;
                         const isLast = index === pathnames.length - 1;
@@ -115,7 +115,7 @@ const SideBar = () => {
                             <li key={to}>{pascalTitle}</li>
                         ) : (
                             <li key={to}>
-                                <a href={to}>{pascalTitle}</a>
+                                <a href={to} className="hover:!text-yellow-300">{pascalTitle}</a>
                             </li>
                         );
                     })}
@@ -143,7 +143,7 @@ const SideBar = () => {
 
             <div className="drawer-side is-drawer-close:overflow-visible shadow-md">
                 <label htmlFor="drawer-toggle" className="drawer-overlay" />
-                <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-20 is-drawer-open:w-60">
+                <div className="flex min-h-full flex-col items-start gap-12 bg-base-200 is-drawer-close:w-20 is-drawer-open:w-60">
                     <div className="flex items-center w-full gap-4 px-4 pt-4">
                         <div className="rounded-xl p-3 bg-blue-500">
                             <FileText size={24} className="text-white" />
@@ -153,8 +153,6 @@ const SideBar = () => {
                             <p className="text-sm">Enterprise</p>
                         </div>
                     </div>
-
-                    <div className="divider" />
 
                     <ul className="menu w-full grow flex flex-col gap-2 px-4 py-0">
                         {renderMenuItems(groupedMenuItems)}
