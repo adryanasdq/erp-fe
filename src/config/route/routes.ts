@@ -68,6 +68,11 @@ export const routes = [
         layout: 'sidebar'
     },
     {
+        path: '/inventory/stock-movement',
+        element: lazy(() => import('@/pages/inventory/stock-movement')),
+        layout: 'sidebar'
+    },
+    {
         path: '*',
         element: lazy(() => import('@/pages/error/404')),
         layout: 'sidebar'
