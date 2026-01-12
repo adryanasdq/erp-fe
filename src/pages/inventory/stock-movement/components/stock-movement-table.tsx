@@ -76,11 +76,25 @@ const StockMovementTable: React.FC<IStockMovementTableProps> = ({
             render: (row) => movementTypeMap[row.type] || row.type
         },
         {
+            key: "uom_id",
+            title: "UOM",
+            align: "left",
+            minWidth: 20,
+            render: (row) => uomMap[row.uom_id]
+        },
+        {
+            key: "warehouse_id",
+            title: "Warehouse",
+            align: "left",
+            minWidth: 20,
+            render: (row) => warehouseMap[row.warehouse_id]
+        },
+        {
             key: "created_date",
             title: "Created Date",
             align: "left",
             minWidth: 20,
-            render: (row) => new Date(row.created_date).toLocaleDateString()
+            render: (row) => new Date(row.created_date).toLocaleString()
         }
     ];
 
