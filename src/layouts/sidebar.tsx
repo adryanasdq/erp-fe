@@ -89,7 +89,7 @@ const SideBar = () => {
                             data-tip={item.title}
                             onClick={() => navigate(item.url)}
                         >
-                            <img src={item.icon} />
+                            <img src={`/icons/${item.icon}`} />
                             <span className="is-drawer-close:hidden">{item.title}</span>
                         </div>
                     )}
