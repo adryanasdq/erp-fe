@@ -88,6 +88,51 @@ export const routes = [
         layout: 'sidebar'
     },
     {
+        path: '/purchasing/purchase-order',
+        element: lazy(() => import('@/pages/purchasing/purchase-order/index')),
+        layout: 'sidebar'
+    },
+    {
+        path: '/purchasing/good-receipt',
+        element: lazy(() => import('@/pages/purchasing/good-receipt/index')),
+        layout: 'sidebar'
+    },
+    {
+        path: '/sales',
+        element: lazy(() => import('@/pages/sales/index')),
+        layout: 'sidebar'
+    },
+    {
+        path: '/sales/customer',
+        element: lazy(() => import('@/pages/sales/customer/index')),
+        layout: 'sidebar'
+    },
+    {
+        path: '/sales/delivery',
+        element: lazy(() => import('@/pages/sales/delivery/index')),
+        layout: 'sidebar'
+    },
+    {
+        path: '/sales/sales-order',
+        element: lazy(() => import('@/pages/sales/sales-order/index')),
+        layout: 'sidebar'
+    },
+    {
+        path: '/accounting',
+        element: lazy(() => import('@/pages/accounting/index')),
+        layout: 'sidebar'
+    },
+    {
+        path: '/accounting/account',
+        element: lazy(() => import('@/pages/accounting/account/index')),
+        layout: 'sidebar'
+    },
+    {
+        path: '/accounting/journal',
+        element: lazy(() => import('@/pages/accounting/journal/index')),
+        layout: 'sidebar'
+    },
+    {
         path: '*',
         element: lazy(() => import('@/pages/error/404')),
         layout: 'sidebar'

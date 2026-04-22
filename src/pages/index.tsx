@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { Users, DollarSign, ShoppingCart, Package, Briefcase, Settings } from "lucide-react";
+import { Users, DollarSign, ShoppingCart, Package, Briefcase, Wallet, Settings } from "lucide-react";
 
 function App() {
   const modules = [
@@ -8,6 +8,7 @@ function App() {
     { title: "Sales", icon: DollarSign, path: "/sales", color: "bg-orange-500" },
     { title: "Inventory", icon: Package, path: "/inventory", color: "bg-purple-500" },
     { title: "Human Resource", icon: Briefcase, path: "/human-resource", color: "bg-pink-500" },
+    { title: "Accounting", icon: Wallet, path: "/accounting", color: "bg-yellow-500" },
     { title: "Settings", icon: Settings, path: "/setting", color: "bg-gray-500" },
   ];
 
