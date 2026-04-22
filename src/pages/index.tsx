@@ -4,8 +4,8 @@ import { Users, DollarSign, ShoppingCart, Package, Briefcase, Settings } from "l
 function App() {
   const modules = [
     { title: "Admin", icon: Users, path: "/admin", color: "bg-blue-500" },
-    { title: "Finance", icon: DollarSign, path: "/finance", color: "bg-green-500" },
-    { title: "Sales", icon: ShoppingCart, path: "/sales", color: "bg-orange-500" },
+    { title: "Purchasing", icon: ShoppingCart, path: "/purchasing", color: "bg-green-500" },
+    { title: "Sales", icon: DollarSign, path: "/sales", color: "bg-orange-500" },
     { title: "Inventory", icon: Package, path: "/inventory", color: "bg-purple-500" },
     { title: "Human Resource", icon: Briefcase, path: "/human-resource", color: "bg-pink-500" },
     { title: "Settings", icon: Settings, path: "/setting", color: "bg-gray-500" },

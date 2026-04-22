@@ -2,10 +2,12 @@ const baseApiURL = import.meta.env.VITE_API_URL || "";
 const baseAdminApiURL = import.meta.env.VITE_ADMIN_URL || "";
 const baseHRApiURL = import.meta.env.VITE_HR_URL || "";
 const baseInventoryAPIURL = import.meta.env.VITE_INVENTORY_URL || "";
+const basePurchasingAPIURL = import.meta.env.VITE_PURCHASING_URL || "";
 
 export const AdminApiURL = `${baseApiURL}/${baseAdminApiURL}`;
 export const HRApiURL = `${baseApiURL}/${baseHRApiURL}`;
-export const InventoryApiURL = `${baseApiURL}/${baseInventoryAPIURL}`
+export const InventoryApiURL = `${baseApiURL}/${baseInventoryAPIURL}`;
+export const PurchasingApiURL = `${baseApiURL}/${basePurchasingAPIURL}`;
 
 export interface Response<T = unknown> {
     data: T;
@@ -103,3 +105,4 @@ const createApiFetch = (baseURL: string, token?: string) => {
 export const adminApiFetch = (token?: string) => createApiFetch(AdminApiURL, token);
 export const hrApiFetch = (token?: string) => createApiFetch(HRApiURL, token);
 export const inventoryApiFetch = (token?: string) => createApiFetch(InventoryApiURL, token);
+export const purchasingApiFetch = (token?: string) => createApiFetch(PurchasingApiURL, token);

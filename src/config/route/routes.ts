@@ -78,6 +78,16 @@ export const routes = [
         layout: 'sidebar'
     },
     {
+        path: '/purchasing',
+        element: lazy(() => import('@/pages/purchasing/index')),
+        layout: 'sidebar'
+    },
+    {
+        path: '/purchasing/supplier',
+        element: lazy(() => import('@/pages/purchasing/supplier/index')),
+        layout: 'sidebar'
+    },
+    {
         path: '*',
         element: lazy(() => import('@/pages/error/404')),
         layout: 'sidebar'
