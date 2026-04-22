@@ -3,11 +3,16 @@
     "baseUrl": ".",
     "jsx": "react-jsx",
     "module": "es2022",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "paths": {
       "@/*": ["src/*"]
     },
-    "types": ["vitest/globals", "node"]
+    "types": ["vitest/globals", "node"],    
+    "outDir": "./dist",    
+    "rootDir": "./",
+    "target": "esnext",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
   },
   "include": ["src", "*.config.ts"]
 }
